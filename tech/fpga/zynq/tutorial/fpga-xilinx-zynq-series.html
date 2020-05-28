@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="theme-color" content="#ec7259">
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<meta name="google" value="notranslate">
+<meta property="wb:webmaster" content="294ec9de89e7fadb">
+<meta property="qc:admins" content="104102651453316562112116375">
+<meta property="qc:admins" content="11635613706305617">
+<meta property="qc:admins" content="1163561616621163056375">
+
+
+<a href="https://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486734&idx=1&sn=d1e6506fb54fba7bc11fb3d6e7b75e8a&chksm=9747e9eba03060fd2660780cc5596bbb4530cf32e2b8fe18b0a95dd74791345ce52d300ca8d4&scene=21#wechat_redirect" target="_blank">PART A：开始了解Zynq (前十八篇) 汇总篇</a><br>
+
+<a href="https://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247487511&idx=1&sn=5472573a9ff4ba90fb3879c6a408ce5d&chksm=9747f4f2a0307de45008fb80e25765d10d489ccd0ccbf5384372cef81c99b85575003f126246&scene=21#wechat_redirect" target="_blank">PART B：Zynq SoC &amp; 硬件设计(第十九篇至三十三篇) 汇总篇</a><br>
+
+<a href="https://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247490642&idx=1&sn=8edfe58b135fdbfa0328d6cfca834bf4&chksm=9747f8b7a03071a1120a4a06a4a5fd3d90f67ecb8e9af3f45158c1eb67fc5cd215f0bfbb663b&&xtrack=1&scene=90&subscene=93&sessionid=1590502347&clicktime=1590509067&enterid=1590509067#rd" target="_blank">PART C：操作系统 &amp; 系统集成(后四篇)汇总篇 暨总汇总篇</a></p>
+
+<h1>1. PART A 开始了解Zynq (前十八篇)</h1>
+
+<h2>第一章：本系列概述</h2>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486170&idx=2&sn=763096fc9a86564abd755f7853e126d1&chksm=9747ee3fa0306729d619292046e329f683d0965d95e62f72e57b543e94ed9271e467d35fd549&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（一）</a></p>
+
+<h2>第二章：Zynq 芯片是什么？</h2>
+
+<p>本章概述了 Zynq 芯片的总体架构，并详述了它的两个组成部分：PS 和 PL，以 及介于这两部分之间的接口资源。处理器系统包含了一个双核ARM Cortex-A9 处理器，带有合成在一个 APU 单元 里的 SIMD 和浮点运算的扩展，另外还有存储器资源。着重介绍了 APU的能力及其与处理器系统中其他部分的接口。同时也解释了 PS整体的内部结构，及其与可编程逻辑的连接。概述了可编程逻辑部分的结构和资源，包括逻辑部分、块 RAM 和 DSP48E1 资源，及接口资源，并说明了 PL 和 PS 之间用 AXI 构成的接口的重要问题。最后，还比较了 Zynq-7000 系列的不同芯片。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486212&idx=2&sn=8553f8074804545d4944a5a725f6c517&chksm=9747efe1a03066f7489afe56148b831cfcea3e4fa8331d0365af2fc3f2c2b67898858059c032&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（二）</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486233&idx=2&sn=6daeb8906e3963914f985961040864f9&chksm=9747effca03066eafec6a34442504d9e42071f549c367b87c6ac46663fb10e50788cc9df0983&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（三）</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486245&idx=3&sn=6ca85958a259aaa938db8ed735b3ed19&chksm=9747efc0a03066d6c3f8a8e3bb5a866bf84f9714616f9dedd61af2bdeda7e8344684e464c9d6&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（四）</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486282&idx=2&sn=c10662ba0ae89d49b1bb1f4fab5ee3d3&chksm=9747efafa03066b97f17078009915c0ad8d5a970ada3906e06a8e8aa78bc08dd003e3ee5351b&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（五）</a></p>
+
+<h2>第三章：Zynq 设计指南——如何使用它？</h2>
+
+<p>本专为入门 Zynq 做准备。我们需要 ( 一 ) 设计工具，( 二 ) 开发板和 ( 三 ) 你的想象力来帮助我们完成入门 ! 我们将 (一) 和（二）以及创建 Zynq 系统的设计流程和方法放在一起全面并综合地给你讲解。然后 （三）将由你自己决定。这章的另一个重点是我们提及的Vivado 设计套件的理念，以及它对系统级设 计，IP 集成以及设计重用的定位。这些设计原则与当今的 SoC系统设计，特别是系统的快速开发的需求十分契合。接下来两章在某种程度上与（三）有关。在了解了 Zynq 的架构和设计过程后，（三）对考虑可能的应用并选择 Zynq 来代替其他器件也是很重要的。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486336&idx=2&sn=4413220ca6073bb05f00f4ce22430b99&chksm=9747ef65a03066739b2f2236d7b1e714309d7d5eff26383cac36a757b527a0fe2b6583447370&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（六）Zynq 设计指南( 如何使用？) 之 入门</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486415&idx=2&sn=21bf4b958c21fc0f4330d3125e8380c5&chksm=9747ef2aa030663c0a0b69fac367c6d4fc788971303f2f5057fe41c7ac69ac4a22fd210ffd46&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（七）Zynq 设计指南( 如何使用？) 之 设计流程概述</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486417&idx=2&sn=8423001fc9e28302d3870a85b48cb3d3&chksm=9747ef34a0306622dfc034346c0f4c6097d1af7550fd490308b191b5bdd31c6e39aa6212c4b8&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（八）Zynq 设计指南( 如何使用？) 之 ISE 和 Vivado 设计套件</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486452&idx=3&sn=72697d823d16b7ea9444967c7ab750c1&chksm=9747ef11a0306607f25860fcab9d3af6b6c3635b29ee392cd0cd1b2a148266f2f6c2496b6a2a&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（九）Zynq 设计指南 之 开发板简介</a></p>
+
+<h2>第四章：芯片比较——为什么我需要 Zynq？</h2>
+
+<p>本章一开始概述了从系统开发者的角度认为是影响目标芯片（或芯片组）选择的因素，并列举了很多这样的因素，包括：芯片的架构、配置和性能、商业考量、支持的设计流和开发工具，物理属性和灵活性。带着这些因素，通过与其他系统实现方式作比较而明确使用 Zynq 的原因，就是与用独立的 FPGA 或独立的处理器，以及用分立元件的 FPGA－处理器组合方式都做了比较。大多数嵌入式应用都必须要有处理器资源，所以本章也总结了在 FPGA 里的处理 器的情况，包括了软处理器和硬处理器。用 Zynq 的 ARM 处理器和当前的及过去的几种基于 FPGA 的嵌入式处理器进行比较，可以看到 ARM 胜出所有其他的可能选项。</p>
+
+<p>本章概述了处理器的基本操作，并指出，如果能够找出软件中的并行，那么就有很大的机会和动力来把这些功能重新布局到硬件中去，因为这样做可以实现极大的加速。这样的软 / 硬件划分可以由分立的处理器和分立的 FPGA组合来实现，但是也讨论了，这样的架构具有它自身的困难，就是两个物理芯片之间所需的接口上存在很多问题。 根据所有这些因素，我们对于 Zynq 在一块集成的芯片上同时实现了高性能处理 和 FPGA 类型的可编程逻辑具有很大的兴趣。这呈现了两个世界的最好的东西，给了设计师很大的灵活性以便根据需要在硬件和软件部件之间划分系统。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486562&idx=2&sn=b0e3303ed4ad1a30b29a1c31af0dc272&chksm=9747e887a0306191d42d174b8620857937fefbeec7cb5b4a83d9bf0ee423f9885362cf28f43c&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（十）芯片比较 之 比较一：Zynq v.s. FPGA</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486633&idx=1&sn=2597ac5985fe25220ba264dd1f773f0c&chksm=9747e84ca030615ae777c645da1962679ce0aab457cdfc3176df9e502adb6b4458610789ff90&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（十一）芯片比较 之 比较二：Zynq v.s. 标准处理器</a></p>
+
+<h2>第五章：应用和机会——拿它能做什么 ?</h2>
+
+<p>本章精选了一些 Zynq 很适合的应用，从而展示了 Zynq 的广泛的应用能力。本章以实例分析的方式详细描述了三个特别的领域，分别是 SDR、智能系统与网络及图像与视频处理。每个例子都显示灵活性和可扩展性是重要的，因此 Zynq 是一个理想的平台。还着重指出了对不同处理类型的需要：像是计算机视觉这样的应用中，既需要高速、并行计算，也需要在处理器的软件上运行更为 “ 智能 ” 的算法。还介绍了 DPR 技术，说明 DPR 可以提供很多好处，不仅仅是运作灵活性，还给 基于 Zynq 的系统带来成本、功耗和升级能力方面的好处。最后讨论了 Zynq 生态系统，并总结了大量的不断增长的第三方产品 （既有免费的也有商业的）。要指出的是参与到这个生态系统中来，为资源的提供者构成了商业机会，而对于这些资源的使用者来说，则代表了加速产品设计周期的有价值的机制。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486652&idx=1&sn=db4ca7363ba4ca1dc1197ce9e14aa428&chksm=9747e859a030614f131c3c5ceca1bc15970f4446f1c761954e179103aa781c61481e65db482b&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（十二）应用和机会 之 应用概述</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486664&idx=1&sn=224ddcc7469705f881f4c895e3ce2aa0&chksm=9747e82da030613b6c597141d33b19ce5586d5962c84e624fcd126af3da4fc2a2825627c7d9d&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（十三）应用和机会 之 软件自定义无线电（SDR）</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486676&idx=1&sn=7eec3c65967e03a256a3ea38cd695b44&chksm=9747e831a030612731f76c68e28e4a2a15f5db1880ac7db9b15efabff981120103c60a80789e&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（十四）应用和机会 之 图像和视频处理，及计算机视觉</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486678&idx=1&sn=fb06bac313aa396e28e96dd258115b23&chksm=9747e833a0306125366082e7af58e45d9654611c7085a3efc99483324f614a1aabc2e0b2b028&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（十五）应用和机会 之 动态片上系统</a></p>
+
+<h2>第六章：The ZedBoard</h2>
+
+<p>本章节主要介绍了 ZedBoard, 一款搭载 Zynq XC7Z020 设备的低功耗评估和开发 板。本章中包含了 ZedBoard 的重点特性，同时重点阐述了板卡上多种物理接口以及它们的作用。我们同样看到了设计工具对于 ZedBoard 的特殊支持（同样对于其他开发板也是），这可以帮助加快设计进程。ZedBoard 一部分目标是鼓励学术和爱好者社区使用 Zynq，因此特别为初学者 入门 Zynq 提供了大量的可用资源。在之前的几页中，我们确认了 ZedBoard 工具包中的内容，解释了如何安装，以及总结了 ZedBoard 入门信息的几个关键来源。之后，我们讨论了 ZedBoard 的社区方面，尤其关注了社区工程，以及论坛之类的，“活的 ” 资源以解决技术问题以及和相同平台内的其他人交换想法。ZedBoard 拥有大量用户，特别是学术机构。在下一章，我们的主题继续聚焦于 Zynq 和 ZedBoard 的教育，研究和练习。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486688&idx=1&sn=b999bc77883d78210915cf644e529b84&chksm=9747e805a03061136493ac848749bf5026336a108e6984c5111b742baed6fe011cfd58997b27&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（十六）The ZedBoard</a></p>
+
+<h2>第七章：教育、研究和培训</h2>
+
+<p>本章我们展示了 Zynq 在工科课程体系，尤其是联网的嵌入式系统中的应用能力。值得指出的是 Zynq 和相关的设计工具及开发板可以成为一些相关课题的基础，包括 FPGA 设计、计算机科学和算法实现，以及嵌入式系统设计。我们还看到 Zynq很适合基于项目的学习，通过设计竞赛来提供附加的、外部的激励来源。我们还考察了 Zynq 作为研究平台的潜力，介绍了一些基于 Zynq 做的研究工作 的早期例子。可以期待，更深入的研究会不断出现，更多的项目会完成、传播并激励其他人。我们介绍了 XUP，解释了它对大学教学和研究的支持机制的作用，以及所提供 的支持的类型。在有资格的机构中的教授、教师和研究人员可以成为 XUP 的会员来获得特定的学术资源。最后，我们总结了企业培训的资源，包括 Xilinx 的 ATP 提供的课程和在线视频培训。这些是对较为标准的支持资源的补充，比如在 Xilinx 网站的文档和教程辅导。<a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486709&idx=2&sn=db4c92fc64655b09708c23fe4488aceb&chksm=9747e810a03061062dcb6e625dafa56ff9f363c3f1bcbbd131420e96d1327cd1dd7022a61f69&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（十七）教育、研究和培训</a></p>
+
+<h2>第八章：Zynq 的第一个工程</h2>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486732&idx=1&sn=0a27b0c11344a5622dddb0c2af66ca45&chksm=9747e9e9a03060ffa0728139af72047d443bce4405be10c292ad9bf8f496cc1cd943fe798d42&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（十八）Zynq 的第一个工程</a></p>
+
+<h1>2. PART B Zynq SoC &amp; 硬件设计(第十九篇至三十三篇) 汇总篇</h1>
+
+<h2>第九章：嵌入式系统和 FPGA</h2>
+
+<p>本章我们介绍了嵌入式系统的概念，研究了一般嵌入式系统的架构。我们讨论了嵌入式系统中处理器的角色，还有处理器的一些功能，谈到了比如处理器 cache和执行周期的问题。还介绍了协处理器的功能以及软件 / 硬件中断的使用。嵌入式系统中各个部分之间的通信是依赖于所使用的总线系统的，本章讨论了总线的功能，也介绍了对于多总线系统的需求，以及总线主机和从机设备之间的区别。还总结了总线仲裁和存储访问技术，并讨论了总线带宽的重要性。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486773&idx=1&sn=8fb9e44be251dcc6149cb0e7e2c07c10&chksm=9747e9d0a03060c61e88cbefeb1dfbb533de4ed20c7b6c375ad415bb7ce3d41c2f4e2f95f168&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（十九）Zynq SoC &amp; 硬件设计 之 嵌入式系统和 FPGA</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486781&idx=1&sn=8a89b3852f189180f1bfd67a1ab0c78c&chksm=9747e9d8a03060ce41e2a706df5758cf3b622e3c6e7e913772548988bb0ccd77a68bf2c1b17a&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（二十）嵌入式系统和 FPGA 之 总线</a></p>
+
+<h2>第十章：Zynq 片上系统概述</h2>
+
+<p>本章详细解释了 Zynq SoC 的某些特性。介绍并讨论了在 L1 cache 和 PS 之间的 接口的方法和相关的信号。特别关注了在 
+PL 和 PS 之间实现 cache 一致性数据传输和请求的 ACP 访问点，也介绍了 PL 和 PS 之间的中断接口。讨论了 AXI 
+互联系统，以及各种数据通路和互联开关，并标识了可用的互联主机和从机。关于 AXI 互联的进一步信息在第 19 章还有。本章最后一节详细讨论了 
+Zynq SoC 实现的各种存储器接口和控制器，以及中断系统。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486850&idx=1&sn=7a204a0ccc6e50398f13dc551a6c7d09&chksm=9747e967a0306071448d705875bfaddb6d2a094b568237987bf44a92820e760595d91b044f9c&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（二十一）Zynq 片上系统概述之接口</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486852&idx=1&sn=e417a5d8242b5480a63878bcf2db11f1&chksm=9747e961a0306077ed5e1b1f1e8c85681bbd70691d8626e181a58ff9afced51b4e83b4190c45&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（二十二）Zynq 片上系统概述之存储器</a></p>
+
+<p>第十一章：Zynq 片上系统的开发</p>
+
+<p>本章介绍了硬件 / 软件划分的概念，就是系统的部件要划分到硬件 （在 PL 中 实现）和软件 （在 PS 
+上运行）上去。也讨论了剖析的过程，剖析有助于识别出系统中存在于软件的瓶颈。这样的软件功能可以被硬件加速，因此需要在 PL 中实现。Xilinx 
+Vivado HLS 工具可以通过自动把 C/C++/SystemC 写的算法转换成 RTL 代码， 来协助从软件到硬件的迁移。本章还介绍了 
+Xilinx 提供的 Zynq 软件开发工具，既有用于 Linux 的也有用于裸机的。还介绍了硬件配置工具，比如 Vivado IDE IP 
+Integrator 和 Xilinx Platform Studio。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486868&idx=1&sn=8683d97bf80dc834d69c67861c22c650&chksm=9747e971a03060673e714b12390758155ad3ac1566ee176b0f10046b08ce3017d9c507f3d6f7&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（二十三）Zynq 片上系统的开发</a></p>
+
+<h2>第十二章：Zynq SoC 设计的下一步</h2>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486881&idx=1&sn=a04f6b12235eb6f6948f79a5a7672619&chksm=9747e944a03060520ba98ebd942fa9464c98edb2aefc1e907ac62ec13410e01f03a5a97bd611&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（二十四）Zynq SoC 设计的下一步</a></p>
+
+<h2>第十三章：IP 包设计</h2>
+
+<p>本章我们介绍了知识产权的概念和 IP 包的使用，以及最近 IP 子系统在业界的趋势。介绍了 Vivado Design Suite 
+中的各种让你创建和维护自己的 IP 集的方法，包括 HDL、Vivado HLS 和 System Generator。也讨论了 
+MathWorks HDL coder 这个第三方工具。重点在于对于所创建的所有 IP 
+的正确文档、仿真和测试的需要上，并且着重突出了前面介绍的所有 IP 创建工具的各种仿真过程。也详细说明了工具中相应带有的文件创建选项。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486992&idx=1&sn=5eacf7601294e14241952eba6f6fd8e3&chksm=9747eaf5a03063e3d737c992648a0526ca796ef9877a1148364b538d6d625949c8eb1ba315a7&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（二十五）IP包设计</a></p>
+
+<h2>第十四章：高层综合</h2>
+
+<p>本章介绍了高层综合的概念，并且解释了它作为一种设计方法，日益增长的重要性，特别是在 Zynq 和 SoC 设计中。HLS 
+允许用软件语言在较高的抽象层次上定义算法，然后在高层综合工具的辅助下将这个算法转换成 RTL 
+描述。这个设计方法能极大地提高在设计能力和验证效果方面的生产率。本章还介绍了 Vivado HLS 
+工具，也描述了它的设计流。特别指出的是，除了综合本身，Vivado HLS 流还集成了在功能级别做流化验证的手段，而且还能进一步对所产生的 
+RTL 代码做验证。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247486994&idx=1&sn=4af15fa5edf33e6814e8f471fd145135&chksm=9747eaf7a03063e1dc6daf087f73b6510887db674c9367291566069a804505d0f3400686749c&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（二十六）高层综合</a></p>
+
+<h2>第十五章：Vivado HLS:  近视</h2>
+
+<p>本章给出了 Vivado HLS 开发工具的详细描述，HLS 提供了从基于 C 
+的软件描述来快速开发硬件设计的工具。尽管单凭单一章节并没有足够的篇幅来说明这个工具的全部特性，但是我们也涵盖了 Vivado HLS 
+环境、数据类型的使用 （包括采用任意精度格式的工具）和各 种接口与算法综合的功能，还给出了几个概念性和基于代码的例子来表明我们的观点。 
+有一个贯穿本章的主题，就是设计者如何能通过使用指令和约束来影响根据输入的 C 代码所做的综合，从而产生出不同的 “ 解决方案 
+”。作为这个讨论的一部分，我们总结了关键性能和实现的度量指标，并给出了例子来表明设计者具有怎样能力使用指令来控制这些指标。 最后，本章还指出了在
+ Vivado HLS 中所产生的设计可以方便地输出以集成进更大的系统项目中，无论是 IP Integrator、XPS 还是 System 
+Generator 都可以。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247487190&idx=1&sn=c7c964f72607cba94a2ef40c851fe31d&chksm=9747ea33a03063258160c241df7b30e565c2744cba9d06bde4fa51b566b2c08b5af2c61502bb&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（二十七）Vivado HLS:  近视 之 项目剖析</a></p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247487192&idx=1&sn=b7dbeedbab4e94e2cd1c216862e896fc&chksm=9747ea3da030632b551608ee3b527157be2fd83aabd5f534d90e18ff5db26f8eb1ab0dff173f&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（二十八）Vivado HLS:  近视 之 算法综合</a></p>
+
+<h2>第十六章：用 Vivado 高层综合 做设计</h2>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247487375&idx=1&sn=5a3a55b869ad0c88e427ae17e88781fe&chksm=9747eb6aa030627cef88df76806ceb5b64def2e33fd349b52b6933ade5b0e7e96ccac1c4f2c8&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（二十九）用 Vivado 高层综合 做设计</a></p>
+
+<h2>第十七章：IP 的创建</h2>
+
+<p>本章是实践的内容，关注的是在 Zynq-7000 平台实现的定制 IP 模块的创建。在本章所呈现的实践练习中所用的 IP 创建方法，和第 13 章《IP 包设计》中详细介绍的是一致的。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247487377&idx=1&sn=9f1551adf0fb56876d025900d1c74477&chksm=9747eb74a03062622164adba5054cbadcc049003748eddacdb75fd23fb226b967d1f37f5d720&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（三十）IP 的创建</a></p>
+
+<h2>第十八章：IP 重用与集成</h2>
+
+<p>本章介绍了 IP 重用和集成的概念，给出了 Vivado 的以 IP 为中心的设计流和设计的系统层级方法的概述。对各种获取 
+IP，包括厂家特定的、通用的和开源的 IP的方法做了讨论，并讨论了各种方法的优缺点。 介绍了 Vivado Design Suite 中用于 
+IP 重用和集成的工具，特别关注的是以 IP 为中心的设计流。讨论了 IP Integrator 和 IP Packager 的功能，也讨论了 
+IPXACT 这个在 IP 设计、半导体和 EDA 系统设计业界广泛接受的 IP 元数据文档标准。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247487380&idx=1&sn=910d650595d67110bfba0ed71cd2c7b1&chksm=9747eb71a030626789c206ec4ac889fba1a70c57fd2daf05f5247c22e3f822ce75edc93d85d0&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（三十一） IP 重用与集成</a></p>
+
+<h2>第十九章：AXI 接口</h2>
+
+<p>本章介绍了用于 Zynq 芯片上的 IP 集成的 AMBA AXI4 接口。介绍了各种 AXI4， 以及一些 Xilinx IP 目录中的
+ IP 应用例子。还着重解释了如何在 Vivado IP Integrator 中利用 AXI 接口来使用 Xilinx IP。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247487454&idx=1&sn=44ac53d209116dbcf4a02f17007f9559&chksm=9747eb3ba030622d59ed6ef6ee32838725f1684e0eb75b6509607556d7f3080d93cba96a5909&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（三十二）AXI 接口</a></p>
+
+<h2>第二十章：探索 IP Integrator</h2>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247487476&idx=1&sn=3545db3a3c8ff9ad1a91a18478dfbfee&chksm=9747eb11a0306207512a22c9e27f2e3795ea7229c576b5b19fbbb629a834e2e6db83a2a55393&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（三十三）探索 IP Integrator</a></p>
+
+<h1>3. PART C 操作系统 &amp; 系统集成(后四篇)汇总篇 暨总汇总篇</h1>
+
+<h2>第二十一章：Zynq 上的操作系统介绍</h2>
+
+<p>本章介绍了嵌入式操作系统的概念，以及使用这些操作系统背后的理由。我们描述了各种类型的嵌入式操作系统，以及可能的产品和设备的例子应用。还介绍了多处理器系统的概念。下一章，我们会更深入地看看 Linux 操作系统。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247490207&idx=1&sn=e9da4d5937a8ca4fc4008b2547d4232a&chksm=9747fe7aa030776ca804dbc3e96f12a2b61fe746b370255da476f23aabcf18582a5da25886db&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（三十四）Zynq 上的操作系统介绍</a></p>
+
+<h2>第二十二章：Linux 概览</h2>
+
+<p>本章给出了通用 Linux 架构的概述，也讨论了与 Linux 开发有关的一些问题，包括许可和开发工具。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247490358&idx=1&sn=ff5e1bc373338615115acdd04c4633c1&chksm=9747ffd3a03076c56416dd2e3f6badb3d18d19b87f08c5fcdbee424923b686c76845b35d55a7&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（三十五）Linux 概览</a></p>
+
+<h2>第二十三章：Linux 内核</h2>
+
+<p>本章给出了 Linux 内核的一些基础部分的高层概述。系统调用接口是从内核抽象出来一个用户层的方式。对于内核本身，本章讨论了内存和进程管理、文件系统和设备驱动程序。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247490484&idx=1&sn=1759caefa7aaef86f9120d63ae62484a&chksm=9747ff51a030764774f857e7679328f7c7db6b01378bb194ca12f4c48527796002e7de5346d9&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（三十六）Linux 内核</a></p>
+
+<h2>第二十四章：Linux 启动</h2>
+
+<p>本章我们看过了桌面环境下的 Linux 的传统的引导过程，这包括对各种阶段的说明，这些阶段有 BIOS、第一和第二级引导装载程序、内核和 
+init。然后介绍了在 Zynq-7000 AP 芯片上引导嵌入式 Linux 的过程，并与桌面的引导 
+顺序作了比较。仔细描述了成功完成引导过程所需的各种文件，包括 BOOT.BIN、zImage、devicetree.dtb 和 
+ramdisk8M.image.gz，还介绍了 BIF 和所需的认证证书的细节。最后，详细说明了用来组成引导映像的 bootgen 工具。</p>
+
+<p><a href="http://mp.weixin.qq.com/s?__biz=MzIxMjM5OTQ5OA==&mid=2247490485&idx=1&sn=8621a6b530ebe1d9f6e65db879011d15&chksm=9747ff50a0307646031f552776abc66f29f210242793c914d169642ec32435a582e913287ce9&scene=21#wechat_redirect" target="_blank">FPGA Xilinx Zynq 系列（三十七）Linux 启动</a></p>
+</article>
+
