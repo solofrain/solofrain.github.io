@@ -12,6 +12,8 @@
     
     - [Vivado](tech/fpga/xilinx/vivado/vivado.md)
     
+        - [Timing](tech/fpga/xilinx/vivado/timing/timing.md)
+    
     - [Zynq](tech/fpga/xilinx/zynq/zynq.md)
 
     - [Zynq UltraScale+](tech/fpga/xilinx/zynqus/zynqus.md)
@@ -38,6 +40,8 @@
 
 ###1.4 Linux
 ---
+
+###1.5 [Machine Learning](tech/machine-learning/machine-learning.md)
 
 ###1.5 EPICS
 ---
