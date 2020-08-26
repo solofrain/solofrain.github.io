@@ -1,34 +1,43 @@
-SOLOFRAIN
-===
 
+##1. Technology
 
-#1. Technology
+###1.1 FPGA
+---
 
-##1.1 Circuit
+- **Xilinx**
 
+    - [PetaLinux](tech/fpga/xilinx/petalinux/petalinux.md)
 
+    - [Vitis](tech/fpga/xilinx/vitis/vitis.md)
+    
+    - [Vivado](tech/fpga/xilinx/vivado/vivado.md)
+    
+    - [Zynq](tech/fpga/xilinx/zynq/zynq.md)
 
-##1.2 FPGA
+    - [Zynq UltraScale+](tech/fpga/xilinx/zynqus/zynqus.md)
 
-- Modules
+    - [ZCU106](tech/fpga/xilinx/eval/zcu106/zcu106.md)
+
+- **Modules**
 
     - [AD-FMCDAQ3-EBZ Rapid Prototyping FMC Module](tech/fpga/modules/ad-fmcdaq3/fmcdaq3.md)
-    
-        
+            
     - [Leopard Imaging Camera Module](tech/fpga/modules/li-imx274mipi-fmc/li-imx274mipi-fmc.md)
     
+- **Project**
 
-- Xilinx
-
-    - PetaLinux
-
-    - Vivado
-    - Zynq
-
-    - Zynq UltraScale+
-
-        - ZCU106
-
-##1.3 Linux
+    - [Project](tech/fpga/project/project.md)
 
 
+
+###1.2 Circuit
+---
+
+###1.3 Algorithm
+---
+
+###1.4 Linux
+---
+
+###1.5 EPICS
+---
