@@ -1,7 +1,7 @@
 Vitis
 ===
 
-##1. Tutorial
+## 1. Tutorial
 
 - [2020.1 Vitis™ Application Acceleration Development Flow Tutorials](https://github.com/Xilinx/Vitis-Tutorials)
 

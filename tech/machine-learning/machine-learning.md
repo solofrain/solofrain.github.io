@@ -3,15 +3,15 @@ Machine Learning
 
 
 
-##1. Books
+## 1. Books
 
 - 动手学深度学习（Dive into Deep Learning，D2L）
     - 书：[https://zh.gluon.ai/](https://zh.gluon.ai/)
     - Github: [https://github.com/d2l-ai/d2l-zh](https://github.com/d2l-ai/d2l-zh)
     
-##2. Tutorials
+## 2. Tutorials
 
-###2.1 基础知识
+### 2.1 基础知识
 
 - [【图解AI：动图】各种类型的卷积，你认全了吗？](https://my.oschina.net/u/876354/blog/3064227)
 
@@ -39,7 +39,7 @@ Machine Learning
 
 - [27种深度学习主流神经网络](https://my.oschina.net/u/876354/blog/1924779)
 
-###2.2 应用
+### 2.2 应用
 
 - 准备
 

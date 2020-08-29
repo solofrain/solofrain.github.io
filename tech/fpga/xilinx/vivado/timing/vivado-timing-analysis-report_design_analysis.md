@@ -5,7 +5,7 @@ Vivado时序分析方法——report_design_analysis（一）
 
 report_design_analysis可以用来对时序问题的根本原因进行分析，进而寻找合适的时序优化方案，达到时序收敛的目的。
 
-##一、分析时序违例路径
+## 一、分析时序违例路径
 
  Vivado工具会优先对最差的路径进行时序优化，最终并不一定成为critical path。因此分析时序违例路径时，并不仅仅关注critical 路径。以下tcl命令可以报告最差的50条setup timing path。    
 
@@ -19,7 +19,7 @@ report_design_analysis -max_paths 50 -setup
 
 首先关注逻辑延时（Logic Delay）和线延时（Net Delay）根据逻辑延时和线延时的比例不同，路径分析方向也略有不同。  
 
-###1、逻辑延时较长
+### 1、逻辑延时较长
 
 a)逻辑级数过多（Logic Levels）：一般可以修改代码，增加寄存降低逻辑级数
 
@@ -43,7 +43,7 @@ report_timing -name longPaths -of_objects [get_timing_paths -setup -to [get_cloc
 
 - 路径上存在逻辑延时较长的单元，比如`DSP`和`BRAM`等
 
-###2、线延时较长
+### 2、线延时较长
 
 - 扇出较大：加max_fanout选项或修改代码手动复制高扇出信号
 
@@ -79,6 +79,6 @@ report_high_fanout_nets -fanout_greater_than 50 -max_nets 100
 
 - 跨SLR信号建议源和目的模块各寄存一级
 
-##参考文档
+## 参考文档
 
 - UG906-vivado-design-analysis

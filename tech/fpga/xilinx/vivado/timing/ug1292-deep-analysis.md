@@ -8,16 +8,16 @@
 
 Tdata由两部分构成Tlogic和Tnet，前者为逻辑延迟，后者为布线延迟。逻辑延迟主要跟逻辑级数相关，显然，过高的逻辑级数会导致逻辑延迟增大。因此，在设计之初就要对逻辑级数有所评估。由此可见，降低逻辑延迟很大程度上需要在HDL代码层面优化，或者借助Vivado提供的综合选项以及综合技术。导致布线延迟过大的因素比较多，例如逻辑级数过大，路径中的某个net的扇出过大，或者工具优先对关键路径布线而使得某些路径的发送端和接收端相距太远等。针对这些问题，ug1292给出了明确的解决方法。
 
-##概述
+## 概述
 
 如何快速、高效地使时序收敛是很多FPGA工程师都要面临的一个问题。这时，大家可能都会想到ug949。这是Xilinx提供的一个很好的文档。作为工程经验的总结，这个文档也包含了时序收敛的方法。在这个文档的基础上，Xilinx最近又发布了一篇新文档ug1292（可直接在Xilinx官网搜索下载）。这个文档把ug949中时序收敛的相关内容单独提取出来，更系统、更直观地介绍了时序收敛的方法。ug1292可以视为时序收敛的一个快速参考手册，而ug949可以当作“字典“，用于查找更为具体的信息。
 
-###ug1292 时序收敛快速参考手册
+### ug1292 时序收敛快速参考手册
 
 这个手册只有十页内容，每一页都有流程图或表格，因此具有很强的可操作性。这十页内容如下表格所示。可以看到，该手册几乎涵盖了所有解决时序违例的基本方法。
 ![](https://mmbiz.qpic.cn/mmbiz_jpg/amLPbwsBTyu5f9Fyq2IqbKQP1AN6DjWPaHr5diajicdwEAkJJ7C1sQPPQAdbkC7xHCzZU9ARicfs3Qg6b3U40IASw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-###如何使用这个手册
+### 如何使用这个手册
 
 这个手册与ug949的理念是一致的即”尽可能地把所有问题放在设计初期解决“。宁可在设计初期花费更多的时间，也不要等到布局布线后才开始发现问题再解决问题。因为，在设计后期，往往会面临牵一发而动全身的被动局面。即使一个小的改动都有可能花费很多的时间和精力甚至造成返工。就时序收敛而言，在定义设计规格时就要有所考虑；写代码时要从代码风格角度考虑对时序的影响；综合之后就要查看时序报告，检查设计潜在问题。这也是ug1292为什么把初始设计检查放在第一页的主要原因。建议最好在开始设计之前通读一下该文档，了解一下对于时序违例路径：
 
@@ -36,7 +36,7 @@ Tdata由两部分构成Tlogic和Tnet，前者为逻辑延迟，后者为布线�
 
 在设计综合之后，就开始按照手册第一页流程对设计进行初始检查。当检查都过关之后，才可以进行下一页的操作。在设计后期，根据上述数值判定造成时序违例的主要因素，然后回到相应页码查看解决方案。
 
-##1. 初始设计检查
+## 1. 初始设计检查
 ug1292第一页的主题是初始设计检查。这一步是针对综合后或者opt_design阶段生成的dcp。尽管在Vivado下，从功能仿真到综合、布局布线、直至生成.bit文件是相对自动化的流程，但是解决时序违例仍然是一个复杂且耗时的过程。仅仅靠log信息或者布线后的时序报告往往很难定位，这是因为实现过程中的每一步（opt_design逻辑优化，place_design布局, phys_opt_design物理优化, route_design布线）都会做一些优化，这些优化可能会导致关键路径被掩盖，例如，有时发现设计中逻辑级数（Logic Level）较高的路径时序收敛了，反倒是逻辑级数较低甚至为0的路径出现时序违例。因此，采取按部就班的策略，检查每一步的结果，及时且尽早发现设计中的问题是很有必要的。
 
 初始设计检查流程如下图所示。对象是综合后或opt_design阶段生成的dcp。会依次执行三个命令（图中红色标记），生成三个报告：FailFast报告、时序报告和UFDM（UltraFast Design Methodology）报告。
@@ -58,7 +58,7 @@ report_methodology可以生成UFDM报告。该命令不仅可以检查RTL代码�
 
  此外，对于大规模的设计，可针对设计中的关键模块使用上述三个命令，因为这些关键模块很有可能成为时序收敛的瓶颈。为了使用这三个命令，可以对关键模块采用OOC（Out-of-Context）的综合方式或单独创建Vivado工程以便生成相应的dcp。
 
-##2. 时序收敛基线流程
+## 2. 时序收敛基线流程
 
 ug1292第二页的主题是时序收敛基线流程。该流程如下图所示。可以看到该流程要求在实现（Implementation）过程中的每一个子步骤结束之后都要检查WNS是否大于0，只有当WNS大于0时，才可以进行下一个子步骤。同时，在布局之后，还要检查WHS是否大于-0.5ns。此外，只有当WNS小于0时，执行phys_opt_design才有意义，毕竟phys_opt_design的目的是修复建立时间违例。由此可见，在实现的前期，更多关注的是建立时间违例。
 
@@ -82,7 +82,7 @@ ug1292第二页的主题是时序收敛基线流程。该流程如下图所示�
 
 这些命令的具体使用方法可参考ug835或在Vivado Tcl Console中执行<命令名 -help>查看。同时，也可采用图形界面方式。
 
-##3. 建立时间违例分析流程
+## 3. 建立时间违例分析流程
 
 通常，我们优先解决建立时间违例。Setup slack与逻辑延迟、布线延迟、时钟歪斜和时钟不确定性有关。因此，首先要明确这几个因素中哪个因素对建立时间违例起关键作用。具体的衡量标准可由如下几个数值确定。这也是ug1292第三页的主题。
 
@@ -98,7 +98,7 @@ ug1292第三页也给出了建立时间违例分析流程，如下图所示。�
 
 注：上述数据只针对UltraScale系列芯片。
 
-##4. 保持时间违例分析流程
+## 4. 保持时间违例分析流程
 
 在分析place_design生成的dcp时，就要开始关注保持时间违例，尤其是当WHS < -0.5ns时。这是因为过大的保持时间违例往往会导致布线时间增大，同时，在布线阶段，工具未必能修复此类违例。
 
@@ -132,7 +132,7 @@ Hold Requirement为正的可能情形出现在使用多周期路径约束的时�
 
 其中方法（1）是在两个同步时序元件之间插入与至相反的时钟沿触发的寄存器，将该路径一分为二，该方法的前提是建立时间不会被恶化。方法（2）至方法（4）都是在路径中插入LUT1。方法（2）只在WHS最大的路径中插入LUT1；方法（3）则是在更多的路径中插入LUT1；方法（4）则是在-directive为Explore的基础上进一步修正保持时间违例，等效于-directive Explore +-aggressive_hold_fix。
 
-##5. 降低逻辑延迟
+## 5. 降低逻辑延迟
 
 在实现阶段，Vivado会把最关键的路径放在首位，这就是为什么在布局或布线之后可能出现逻辑级数低的路径时序反而未能收敛。因此，在综合或opt_design之后就要确认并优化那些逻辑级数较高的路径。这些路径可有效降低工具在布局布线阶段为达到时序收敛而迭代的次数。同时，这类路径往往逻辑延迟较大。因此，降低这类路径的逻辑延迟对于时序收敛将大有裨益。
 
@@ -197,7 +197,7 @@ set_property DOA_REG 1  [get_cells xx/ramb18_inst]
 set_property DOB_REG 1  [get_cells xx/ramb18_inst] 
 ```
 
-##6. 降低布线延迟（1）
+## 6. 降低布线延迟（1）
 
 当设计出现布线拥塞时，通常会导致布线延迟增大，从而影响时序收敛。布线拥塞程度可通过如下两种方式获取：
 
@@ -287,7 +287,7 @@ opt_design -merge_equivalent_drivers -hier_fanout_limit 512
 phys_opt_design -force_replication_on_nets <net>
 ```
 
-##7. 降低布线延迟（2）
+## 7. 降低布线延迟（2）
 
 布线延迟过大除了拥塞导致之外，还可能是其他因素。下图显示了降低布线延迟的另一流程（因其他因素导致布线延迟过大的处理流程）。
 
@@ -295,15 +295,15 @@ phys_opt_design -force_replication_on_nets <net>
 
 首先，通过report_desigan_analysis分析路径特征。有时还需要结合report_utilization和report_failfast两个命令。
 
-###第1步：分析路径的Hold Fix Detour是否大于0ps？
+### 第1步：分析路径的Hold Fix Detour是否大于0ps？
 
 HoldFix Detour是工具为了修复保持时间违例而产生的绕线（该数值在design analysis报告中显示，如果没有显示，可在报告标题栏内点击右键，选择HoldFix Detour）。如果该数值大于0，就有可能造成建立时间违例。这时其实应关注的是该路径对应的保持时间报告，诊断为什么工具会通过绕线修复保持时间违例。
 
-###第2步：违例路径的各个逻辑单元是否存在位置约束？
+### 第2步：违例路径的各个逻辑单元是否存在位置约束？
 
 通常，设计中不可避免地会有一些物理约束，如管脚分配。除此之外，还可能会有其他位置约束，如通过create_macro或Pblock创建的位置约束。如果设计发生改变，就需要关注这些位置约束是否仍然合理，尤其是那些穿越多个Pblock的路径。
 
-###第3步：违例路径是否穿越SLR？
+### 第3步：违例路径是否穿越SLR？
 
 如果目标芯片为多die芯片，那么在设计初期就要考虑到以下几个因素，以改善设计性能。
 
@@ -317,7 +317,7 @@ HoldFix Detour是工具为了修复保持时间违例而产生的绕线（该数
 
 -    在布局或布线之后如果仍有时序违例，可尝试使用phys_opt_design -slr_crossing_opt。
 
-###第4步：唯一控制集百分比是否大于7.5%？
+### 第4步：唯一控制集百分比是否大于7.5%？
 
 唯一控制集个数可通过report_failfast查看。如果控制集百分比超过7.5%，可通过如下方法降低控制集。
 
@@ -343,7 +343,7 @@ HoldFix Detour是工具为了修复保持时间违例而产生的绕线（该数
 
     对于低扇出的控制信号（同步使能、同步置位/同步复位），可对其连接的寄存器设置CONTROL_SET_REMAP属性，将控制信号搬移到数据路径上，从而降低控制集。
 
-###第5步：尝试其他实现策略
+### 第5步：尝试其他实现策略
 
 Vivado提供了多种实现策略。因此，尝试不同实现策略是达到时序收敛的一个手段。
 
@@ -355,7 +355,7 @@ Vivado提供了多种实现策略。因此，尝试不同实现策略是达到�
 
 -    尝试使用增量布局布线，继承之前好的布局布线结果，并缩短编译时间。
 
-##8. 降低Clock Skew
+## 8. 降低Clock Skew
 
 过大的Clock Skew也可能导致时序违例，尤其是其数值超过0.5ns时。如下三个命令生成的报告中均可显示Clock Skew的具体数值。
 
@@ -369,7 +369,7 @@ Vivado提供了多种实现策略。因此，尝试不同实现策略是达到�
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/amLPbwsBTyvfFUiaIeouhvwGYreyoEiaND4m5Cj9aBZacF9NcrvdstDyQatv7T8u3EFgEl0dnpS1VSQ7ic3Y4CQibw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-###异步跨时钟域路径是否被安全合理地约束
+### 异步跨时钟域路径是否被安全合理地约束
 
 时钟关系有两种：同步时钟和异步时钟。如果发送时钟和接收时钟是同源的，例如来自于同一个MMCM，则认为二者是同步时钟，否则就按异步时钟处理。对于异步跨时钟域路径，可采用如下三者之一进行约束：
 
@@ -379,7 +379,7 @@ Vivado提供了多种实现策略。因此，尝试不同实现策略是达到�
 
 - set_max_delay -datapath_only
 
-###发送时钟和接收时钟的时钟树结构是否平衡
+### 发送时钟和接收时钟的时钟树结构是否平衡
 
 时钟树结构其实就是时钟的拓扑结构。从发送时钟和接收时钟的角度看，平衡的时钟树结构是指二者“走过相同或等效的路径”。如下图所示，发送时钟和接收时钟来自级联的BUFG的不同位置上，这就是典型的不平衡时钟树。在设计中要避免这种情形。通过Tcl命令report_methodology可检查出设计中级联的BUFG。
 
@@ -396,7 +396,7 @@ Vivado提供了多种实现策略。因此，尝试不同实现策略是达到�
 ![](https://mmbiz.qpic.cn/mmbiz_png/amLPbwsBTyvfFUiaIeouhvwGYreyoEiaNDg4EI6hpodYJ9193XaIZmZROSJ2WViaybe36uhKfsk504DNagKTjklng/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 
-###检查Clock Skew是否小于0.5ns
+### 检查Clock Skew是否小于0.5ns
 
 CLOCK_DELAY_GROUP可有效改善同步跨时钟域路径的Clock Skew，因此，Xilinx建议对于关键的同步跨时钟域路径，可通过设置该属性降低Clock Skew，即使发送时钟和接收时钟具有相同的CLOCK_ROOT值。CLOCK_DELAY_GROUP的具体使用方法如下图所示，其中clk1_net和clk2_net是Clock Buffer的输出端连接的net。但是，避免过多使用该属性，否则会适得其反。
 
@@ -404,7 +404,7 @@ CLOCK_DELAY_GROUP可有效改善同步跨时钟域路径的Clock Skew，因此�
 set_property CLOCK_DELAY_GROUP grp12 [get_nets {clk_net, clk2_net}]
 ```
 
-###时钟是否同时驱动I/O和Slice中的逻辑资源
+### 时钟是否同时驱动I/O和Slice中的逻辑资源
 
 如果时钟同时驱动I/O和Slice中的逻辑资源，且负载小于2000时，可通过CLOCK_LOW_FANOUT属性对相应的时钟net进行设置，最终可使工具将该时钟驱动的所有负载放置在同一个时钟域内。通过命令report_clock_utilization生成的报告可查看每个时钟的负载，如下图所示。
 CLOCK_LOW_FANOUT的具体使用方法如下图所示。
@@ -413,11 +413,11 @@ CLOCK_LOW_FANOUT的具体使用方法如下图所示。
 set_property CLOCK_LOW_FANOUT TRUE [get_nets -of [get_pins clk_
 ```
 
-###检查数据路径是否穿越SLR或I/O Column
+### 检查数据路径是否穿越SLR或I/O Column
 
 如果时钟负载较小且穿越SLR或I/O Column时，可通过Pblock实施位置约束，将负载限定在一定区域内，例如在一个SLR内，以避免穿越一些特殊列，例如I/O Column。相反地，如果数据路径并未穿越SLR或I/O Column，可尝试对相应的MMCM或PLL做位置约束，使其位于这些负载的中央。
 
-##9. 降低Clock Uncertainty
+## 9. 降低Clock Uncertainty
 
 Clock Uncertainty跟图1所示的几个因素有关。当时序违例路径的Clock Uncertainty超过0.1ns时，应引起关注。这一数值可在时序报告中查找到，如图2所示，如果需要降低Clock Uncertainty，可采用如图3所示的流程。
 
@@ -433,7 +433,7 @@ Clock Uncertainty跟图1所示的几个因素有关。当时序违例路径的Cl
 
 图3 降低Clock Uncertainty的操作流程
 
-###同步时钟是否由两个并行的MMCM或PLL生成
+### 同步时钟是否由两个并行的MMCM或PLL生成
 
 在UltraScale和UltraScale Plus系列芯片中，BUFGCE_DIV可提供分频功能。如图4所示，如果需要通过MMCM生成两个时钟，其频率分别为300MHz和600MHz。此时，可利用BUFGCE_DIV的分频功能，同时可对这两个时钟设置CLOCK_DELAY_GROUP属性，从而降低Clock Uncertainty。
 
@@ -441,7 +441,7 @@ Clock Uncertainty跟图1所示的几个因素有关。当时序违例路径的Cl
 
 图4 利用BUFGCE_DIV生成分频时钟
 
-###生成时钟其Discrete Jitter>0.05ns?
+### 生成时钟其Discrete Jitter>0.05ns?
 
 Discrete Jitter是由MMCM/PLL引入的，其具体数值可通过点击图2中Clock Uncertainty的数值查看，如图5所示。通常，VCO的频率越高，引入的DiscreteJitter会越小。因此，可通过手工调整VCO的频率（在ClockingWizard中修改M和D两个参数）达到降低Discrete Jitter的目的。此外，如果可以的话，用PLL替代MMCM。相比于MMCM，PLL引入的Jitter会小一些。
 
@@ -449,7 +449,7 @@ Discrete Jitter是由MMCM/PLL引入的，其具体数值可通过点击图2中Cl
 
 图5 查看Discrete Jitter具体数值
 
-###同步跨时钟域路径是否超过1000条
+### 同步跨时钟域路径是否超过1000条
 
 过多的同步跨时钟域路径会对时序收敛带来一定的挑战，尤其是时钟频率比较高时，例如频率为500MHz。此时要检查这些路径。
 
@@ -457,21 +457,21 @@ Discrete Jitter是由MMCM/PLL引入的，其具体数值可通过点击图2中Cl
 
 （2）在Latency允许的情况下，通过FIFO或XPM_CDC处理跨时钟域路径
 
-##10. 用好report_failpast
+## 10. 用好report_failpast
 
-###安装Design Utilities
+### 安装Design Utilities
 
 使用report_failpast之前，要先确保Design Utilities已经安装。安装方法是点击Tools->Xilinx Tcl Store，如下图所示。
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/amLPbwsBTytmZybsTpkr5NNbG7XvNZ7I4QziaaXg91DvUSL8UZh9ojmxDzQH149T1Nf6QaXOA46iaAj6pJEEhcnA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-###report_failpast生成报告
+### report_failpast生成报告
 
 report_failpast生成的报告分为三部分：设计特征、时钟检查和关键路径分析，如下图所示。其中在设计特征部分，该报告会给出资源利用率的建议值，一旦超过这个建议值，Status列内会呈现REVIEW标记。如图中的FD（D触发器），实际利用率为57.66%，超过建议值50%。同时该部分还会给出控制集分析（Control Set），可帮助判断是否需要降低控制集。此外，对于不是由FD驱动的扇出大于10K的net，这部分也会有所显示。
 
 ![](https://mmbiz.qpic.cn/mmbiz_jpg/amLPbwsBTytmZybsTpkr5NNbG7XvNZ7IpjPQk65XWPa02JEUG3ew3IMZkiaj69KNSd6eYC8mLUs0geeARiajKdhw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-###report_failpast使用方法
+### report_failpast使用方法
 
 report_failpast除了基本的使用方法（不添加任何选项）之外，还提供了其他的选项。例如，-pblock选项可用于分析Pblock对应的约束是否合理。该选项可在布局之前使用（要求已经提供了Pblock具体位置约束），也可在布局之后使用。显然，在布局之前使用是非常有意义的，因为可以据此判定Pblock的约束是否合理。同时，针对SSI芯片，该命令还提供了-slr和-by_slr选项，这两个选项需要在布局之后使用。此外，对于报告中Status为REVIEW的条目可通过选项-detailed_report生成相应的更为详细的报告，具体使用方法如下所示。例如，DONT_TOUCH为REVIEW状态，则该命令可生成impl.DONT_TOUCH.rpt报告，可显示使用了DONT_TOUCH属性的cell。
 

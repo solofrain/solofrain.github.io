@@ -9,13 +9,13 @@ By Lauren
 
 ![](https://upload-images.jianshu.io/upload_images/16278820-2c7f642a5f08f49d?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##1. 找到时序最糟糕的路径
+## 1. 找到时序最糟糕的路径
 
 如果时序未收敛，并不需要分析所有未收敛的路径，而是先关注时序最糟糕的路径，先优化这些路径，有可能优化这些路径之后，这些路径收敛了，同时其他路径也能够收敛。只需要点击上图中WNS之后的数字，即可显示这些最糟糕的路径，如下图所示。
 
 ![](https://upload-images.jianshu.io/upload_images/16278820-357f72d716889391.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##2. 分析时序最糟糕的路径
+## 2. 分析时序最糟糕的路径
 
 只需要双击上图中的路径，就能显示该路径对应的时序报告的详细信息，如下图所示。
 
