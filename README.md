@@ -16,7 +16,7 @@
     
     - [Zynq](tech/fpga/xilinx/zynq/zynq.md)
 
-    - [Zynq UltraScale+](tech/fpga/xilinx/zynqus/zynqus.md)
+    - [Zynq UltraScale+](tech/fpga/xilinx/zynq-ultrascale/zynq-ultrascale.md)
 
     - [ZCU106](tech/fpga/xilinx/eval/zcu106/zcu106.md)
 
