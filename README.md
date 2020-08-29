@@ -1,7 +1,7 @@
 
-##1. Technology
+## 1. Technology
 
-###1.1 FPGA
+### 1.1 FPGA
 ---
 
 - **Xilinx**
@@ -30,14 +30,14 @@
 
 
 
-###1.2 Circuit
+### 1.2 Circuit
 ---
 
-###1.3 Algorithm
+### 1.3 Algorithm
 ---
 
-###1.4 Linux
+### 1.4 Linux
 ---
 
-###1.5 EPICS
+### 1.5 EPICS
 ---
