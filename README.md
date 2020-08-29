@@ -33,19 +33,14 @@
 
 
 ### 1.2 Circuit
----
+
 
 ### 1.3 Algorithm
----
+
 
 ### 1.4 Linux
----
 
-<<<<<<< HEAD
-### 1.5 EPICS
-=======
-###1.5 [Machine Learning](tech/machine-learning/machine-learning.md)
 
-###1.5 EPICS
->>>>>>> 873c8cd3263e2f0a773111697f93b5f16ba829f5
----
+### 1.5 [Machine Learning](tech/machine-learning/machine-learning.md)
+
+### 1.6 EPICS
