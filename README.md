@@ -5,12 +5,14 @@
 
 ## 1.1 FPGA
 
-- [**HDL**]
+- **HDL**
     - [HDL](tech/fpga/hdl/vhdl-type-conversion.md)
 
 - **Xilinx**
 
     - [PetaLinux](tech/fpga/xilinx/petalinux/petalinux.md)
+
+    - [Script](tech/fpga/xilinx/script/make.md)
 
     - [Vitis](tech/fpga/xilinx/vitis/vitis.md)
     
