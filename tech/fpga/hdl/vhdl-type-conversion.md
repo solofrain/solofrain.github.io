@@ -1,17 +1,14 @@
-VHDL TYPE CONVERSION
+VHDL Type Conversion Using Numeric_std Library
 ===
 
-Original post: https://www.nandland.com/vhdl/tips/tip-convert-numeric-std-logic-vector-to-integer.html
-
-Using both numeric_Std Package Files
+Modified form the original post: https://www.nandland.com/vhdl/tips/tip-convert-numeric-std-logic-vector-to-integer.html
 
 >Note that many of the below examples use the 'length VHDL attribute. This attribute makes your code more portable and versatile, so it should be used.
-Example Conversions using Numeric Std
 
 - Integer to Signed
-- Integer to Std_Logic_Vector (no direct conversion)
+- Integer to Std_Logic_Vector (<font color=red>no direct conversion</font>)
 - Integer to Unsigned
-- Std_Logic_Vector To Integer (no direct conversion)
+- Std_Logic_Vector To Integer (<font color=red>no direct conversion</font>)
 - Std_Logic_Vector To Signed
 - Std_Logic_Vector To Unsigned
 - Signed to Integer

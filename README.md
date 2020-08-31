@@ -38,17 +38,23 @@
 
 
 
-## 1.2 Circuit
+## 1.2 [Circuit](tech/circuit/circuit.md)
 
 
-## 1.3 Algorithm
+## 1.3 [Algorithm](tech/algorithm/algorithm.md)
 
 
 ## 1.4 Linux
 
-- [Makefile]
+- [Command](tech/linux/cmd/cmd.md)
+
+- [Driver](tech/linux/driver/driver.md)
+
+- [Makefile](tech/linux/make/make.md)
 
 
 ## 1.5 [Machine Learning](tech/machine-learning/machine-learning.md)
 
 ## 1.6 EPICS
+
+# 2. Read

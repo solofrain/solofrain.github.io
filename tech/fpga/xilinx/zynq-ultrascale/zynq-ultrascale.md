@@ -2,7 +2,6 @@ Zynq UltraScale
 ===
 
 
-
 # 1. Book
 
 - Exploring Zynq MPSoC
