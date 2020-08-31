@@ -1,7 +1,7 @@
 VHDL Type Conversion Using Numeric_std Library
 ===
 
-Modified form the original post: https://www.nandland.com/vhdl/tips/tip-convert-numeric-std-logic-vector-to-integer.html
+Modified form the original post: <https://www.nandland.com/vhdl/tips/tip-convert-numeric-std-logic-vector-to-integer.html>{:target="_blank"}
 
 >Note that many of the below examples use the 'length VHDL attribute. This attribute makes your code more portable and versatile, so it should be used.
 
