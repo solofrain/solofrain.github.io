@@ -11,6 +11,12 @@ Machine Learning
     
 ## 2. Tutorials
 
+## 2.1 Course
+
+- CreativeAI: Deep Learning for Computer Graphics
+    - Siggraph 2019 Course: [https://geometry.cs.ucl.ac.uk/creativeai/](https://geometry.cs.ucl.ac.uk/creativeai/)
+    - Code: [https://github.com/smartgeometry-ucl/dl4g](https://github.com/smartgeometry-ucl/dl4g)
+
 ### 2.1 基础知识
 
 - [【图解AI：动图】各种类型的卷积，你认全了吗？](https://my.oschina.net/u/876354/blog/3064227)
