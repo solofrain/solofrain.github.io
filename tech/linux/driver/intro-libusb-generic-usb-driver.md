@@ -355,9 +355,9 @@ Linux 平台上的usb驱动开发，主要有内核驱动的开发和基于libus
 
 >1 当使用我们产品的客户有2.4内核的平台，同时也有2.6内核的平台，我们要设计的驱动是要兼容两个平台的，就连makefile 我们都要写两个。
 
->2 当我们要把linux移植到嵌入平台上，你会发现原先linux自带的驱动移过去还挺大的，我的内核当然是越小越好拉，这样有必要么。这还不是最郁闷的地方，如果嵌入平台是客户的，客户要购买你的产品，你突然发现客户设备里的系统和你的环境不一样，它没有你要的驱动了，你的程序运行不了，你会先想：“没关系，我写个内核驱动加载一下不就行了“。却发现客户连insmod加载模块的工具都没移植，那时你就看看老天，说声我怎么那么倒霉啊，客户可不想你动他花了n时间移植的内核哦
+>2 当我们要把linux移植到嵌入平台上，你会发现原先linux自带的驱动移过去还挺大的，我的内核当然是越小越好拉，这样有必要么。这还不是最郁闷的地方，如果嵌入平台是客户的，客户要购买你的产品，你突然发现客户设备里的系统和你的环境不一样，它没有你要的驱动了，你的程序运行不了，你会先想：“没关系，我写个内核驱动加载一下不就行了。”却发现客户连insmod加载模块的工具都没移植，那时你就看看老天，说声我怎么那么倒霉啊，客户可不想你动他花了n时间移植的内核哦
 
->3 花了些功夫写了个新产品的驱动，挺有成就感啊，代码质量也是相当的有水准啊。正当你沉醉在你的代码中时，客服不断的邮件来了，“客户需要2.6.5内核的驱动，config文件我已经发你了” “客户需要双核的 2.6.18-smp 的驱动” “客户的平台是自己定制的是2.6.12-xxx “   你恨不得把驱动的源代码给客户，这样省得编译了。你的一部分工作时间编译内核，定制驱动
+>3 花了些功夫写了个新产品的驱动，挺有成就感啊，代码质量也是相当的有水准啊。正当你沉醉在你的代码中时，客服不断的邮件来了，“客户需要2.6.5内核的驱动，config文件我已经发你了” “客户需要双核的 2.6.18-smp 的驱动” “客户的平台是自己定制的是2.6.12-xxx ”。你恨不得把驱动的源代码给客户，这样省得编译了。你的一部分工作时间编译内核，定制驱动。
 
 有问题产生必然会有想办法解决问题的人， libusb的出现给我们带来了某些方便，即节约了我们的时间，也降低了公司的成本。 所以在一些情况下，就可以考虑使用libusb的无驱设计了。
 
@@ -377,25 +377,25 @@ Libusb 的编译安装请查看Readme,这里不做详解
 
 - **usb_init()**
 
-    函数定义： void usb_init(void);
+    函数定义： `void usb_init(void);`
 
     从函数名称可以看出这个函数是用来初始化相关数据的，这个函数大家只要记住必须调用就行了，而且是一开始就要调用的.
 
 - **usb_find_busses()**
 
-    函数定义： int usb_find_busses(void);
+    函数定义：` int usb_find_busses(void);`
 
     寻找系统上的usb总线，任何usb设备都通过usb总线和计算机总线通信。进而和其他设备通信。此函数返回总线数。
 
 - **usb_find_devices()**
 
-    函数定义： int usb_find_devices(void);
+    函数定义： `int usb_find_devices(void);`
 
     寻找总线上的usb设备，这个函数必要在调用usb_find_busses()后使用。以上的三个函数都是一开始就要用到的，此函数返回设备数量。
 
 - **usb_get_busses()**
 
-    函数定义： struct usb_bus *usb_get_busses(void);
+    函数定义： `struct usb_bus *usb_get_busses(void);`
 
     这个函数返回总线的列表，在高一些的版本中已经用不到了，这在下面的实例中会有讲解
 
@@ -403,115 +403,117 @@ Libusb 的编译安装请查看Readme,这里不做详解
 
 - **usb_open()**
 
-    函数定义： usb_dev_handle *usb_open(struct *usb_device dev);
+    函数定义： `usb_dev_handle *usb_open(struct *usb_device dev);`
 
-    打开要使用的设备，在对硬件进行操作前必须要调用usb_open 来打开设备，这里大家看到有两个结构体 usb_dev_handle 和 usb_device 是我们在开发中经常碰到的，有必要把它们的结构看一看。在libusb 中的usb.h和usbi.h中有定义。
+    打开要使用的设备。在对硬件进行操作前必须要调用 `usb_open` 来打开设备，这里大家看到有两个结构体 `usb_dev_handle` 和 `usb_device` 是我们在开发中经常碰到的，有必要把它们的结构看一看。在libusb 中的`usb.h`和`usbi.h`中有定义。
 
-    这里我们不妨理解为返回的 usb_dev_handle 指针是指向设备的句柄，而行参里输入就是需要打开的设备。
+    这里我们不妨理解为返回的 `usb_dev_handle` 指针是指向设备的句柄，而形参里输入就是需要打开的设备。
 
 -   **usb_close()**
 
-    函数定义： int usb_close(usb_dev_handle *dev);
+    函数定义： `int usb_close(usb_dev_handle *dev);`
 
     与usb_open相对应，关闭设备，是必须调用的, 返回0成功，<0 失败。
 
 -   **usb_set_configuration()**
 
-    函数定义： int usb_set_configuration(usb_dev_handle *dev, int configuration);
+    函数定义： `int usb_set_configuration(usb_dev_handle *dev, int configuration);`
 
-    设置当前设备使用的configuration，参数configuration 是你要使用的configurtation descriptoes中的bConfigurationValue, 返回0成功，<0失败( 一个设备可能包含多个configuration,比如同时支持高速和低速的设备就有对应的两个configuration,详细可查看usb标准)
+    设置当前设备使用的`configuration`。参数`configuration` 是你要使用的`configurtation descriptoes`中的`bConfigurationValue`, 返回`0`成功，`<0`失败( 一个设备可能包含多个`configuration`,比如同时支持高速和低速的设备就有对应的两个`configuration`,详细可查看usb标准)。
 
 -   **usb_set_altinterface()**
 
-    函数定义： int usb_set_altinterface(usb_dev_handle *dev, int alternate);
+    函数定义： `int usb_set_altinterface(usb_dev_handle *dev, int alternate);`
 
-    和名字的意思一样，此函数设置当前设备配置的interface descriptor，参数alternate是指interface descriptor中的bAlternateSetting。返回0成功，<0失败
+    和名字的意思一样，此函数设置当前设备配置的`interface descriptor`。参数`alternate`是指`interface descriptor`中的`bAlternateSetting`。返回`0`成功，`<0`失败
 
 -   **usb_resetep()**
 
-    函数定义： int usb_resetep(usb_dev_handle *dev, unsigned int ep);
+    函数定义： `int usb_resetep(usb_dev_handle *dev, unsigned int ep);`
 
-    复位指定的endpoint，参数ep 是指bEndpointAddress,。这个函数不经常用，被下面介绍的usb_clear_halt函数所替代。
+    复位指定的`endpoint`。参数`ep` 是指`bEndpointAddress`。这个函数不经常用，被下面介绍的`usb_clear_halt`函数所替代。
 
 -   **usb_clear_halt()**
 
-    函数定义： int usb_clear_halt (usb_dev_handle *dev, unsigned int ep);
+    函数定义： `int usb_clear_halt (usb_dev_handle *dev, unsigned int ep);`
 
-    复位指定的endpoint，参数ep 是指bEndpointAddress。这个函数用来替代usb_resetep
+    复位指定的`endpoint`。参数`ep` 是指`bEndpointAddress`。这个函数用来替代`usb_resetep`。
 
 -   **usb_reset()**
 
-    函数定义： int usb_reset(usb_dev_handle *dev);
+    函数定义：`int usb_reset(usb_dev_handle *dev);`
 
-    这个函数现在基本不怎么用，不过这里我也讲一下，和名字所起的意思一样，这个函数reset设备，因为重启设备后还是要重新打开设备，所以用usb_close就已经可以满足要求了。
+    这个函数现在基本不怎么用，不过这里我也讲一下，和名字所起的意思一样，这个函数reset设备，因为重启设备后还是要重新打开设备，所以用`usb_close`就已经可以满足要求了。
 
 -   **usb_claim_interface()**
 
-    函数定义： int usb_claim_interface(usb_dev_handle *dev, int interface);
+    函数定义： `int usb_claim_interface(usb_dev_handle *dev, int interface);`
 
     注册与操作系统通信的接口，这个函数必须被调用，因为只有注册接口，才能做相应的操作。
 
-    Interface 指 bInterfaceNumber. (下面介绍的usb_release_interface 与之相对应，也是必须调用的函数)
+    `Interface` 指 `bInterfaceNumber`。 (下面介绍的`usb_release_interface` 与之相对应，也是必须调用的函数)
 
 -   **usb_release_interface()**
 
     函数定义： int usb_release_interface(usb_dev_handle *dev, int interface);
 
-    注销被usb_claim_interface函数调用后的接口，释放资源，和usb_claim_interface对应使用。
+    注销被`usb_claim_interface`函数调用后的接口，释放资源，和`usb_claim_interface`对应使用。
 
 ## 2.3 控制传输接口
 
 -   **usb_control_msg()**
 
-    函数定义：int usb_control_msg(usb_dev_handle *dev, int requesttype, int request, int value, int index, char *bytes, int size, int timeout);
+    函数定义：`int usb_control_msg(usb_dev_handle *dev, int requesttype, int request, int value, int index, char *bytes, int size, int timeout);`
 
-    从默认的管道发送和接受控制数据
+    从默认的管道发送和接受控制数据。
 
 -   **usb_get_string()**
 
-    函数定义： int usb_get_string(usb_dev_handle *dev, int index, int langid, char *buf, size_t buflen);
+    函数定义： `int usb_get_string(usb_dev_handle *dev, int index, int langid, char *buf, size_t buflen);`
 
 -   **usb_get_string_simple()**
 
-    函数定义： int usb_get_string_simple(usb_dev_handle *dev, int index, char *buf, size_t buflen);
+    函数定义： `int usb_get_string_simple(usb_dev_handle *dev, int index, char *buf, size_t buflen);`
 
 -   **usb_get_descriptor()**
 
-    函数定义： int usb_get_descriptor(usb_dev_handle *dev, unsigned char type, unsigned char index, void *buf, int size);
+    函数定义： `int usb_get_descriptor(usb_dev_handle *dev, unsigned char type, unsigned char index, void *buf, int size);`
 
 -   **usb_get_descriptor_by_endpoint()**
 
-    函数定义： int usb_get_descriptor_by_endpoint(usb_dev_handle *dev, int ep, unsigned char type, unsigned char index, void *buf, int size);
+    函数定义： `int usb_get_descriptor_by_endpoint(usb_dev_handle *dev, int ep, unsigned char type, unsigned char index, void *buf, int size);`
 
 ## 2.4 批传输接口
 
 -   **usb_bulk_write()**
 
-    函数定义： int usb_bulk_write(usb_dev_handle *dev, int ep, char *bytes, int size, int timeout);
+    函数定义： `int usb_bulk_write(usb_dev_handle *dev, int ep, char *bytes, int size, int timeout);`
     
 -    **usb_interrupt_read()**
 
-    函数定义： int usb_interrupt_read(usb_dev_handle *dev, int ep, char *bytes, int size, int timeout);
+    函数定义： `int usb_interrupt_read(usb_dev_handle *dev, int ep, char *bytes, int size, int timeout);`
 
 ## 2.5 中断传输接口
 
 - **usb_bulk_write()**
 
-    函数定义： int usb_bulk_write(usb_dev_handle *dev, int ep, char *bytes, int size, int timeout);
+    函数定义： `int usb_bulk_write(usb_dev_handle *dev, int ep, char *bytes, int size, int timeout);`
 
 - **usb_interrupt_read()**
 
-    函数定义： int usb_interrupt_read(usb_dev_handle *dev, int ep, char *bytes, int size, int timeout);
+    函数定义： `int usb_interrupt_read(usb_dev_handle *dev, int ep, char *bytes, int size, int timeout);`
 
 基本上libusb所经常用到的函数就有这些了，和usb协议确实很接近吧。下面我们实例在介绍一个应用。
 
 //----------------===================================
 
 # 3. Libusb库的使用
-使用libusb之前你的linux系统必须装有usb文件系统，这里还介绍了使用hiddev设备文件来访问设备，目的在于不仅可以比较出usb的易用性，还提供了一个转化成libusb驱动的案例。
+
+使用libusb之前你的Linux系统必须装有usb文件系统，这里还介绍了使用hiddev设备文件来访问设备，目的在于不仅可以比较出usb的易用性，还提供了一个转化成libusb驱动的案例。
 
 ## 3.1 find设备
-任何驱动第一步首先是寻找到要操作的设备，我们先来看看HID驱动是怎样寻找到设备的。我们假设寻找设备的函数Device_Find(注：代码只是为了方便解说，不保证代码的健全)。我们简单看一下使用hid驱动寻找设备的实现，然后在看一下libusb是如何寻找设备的。
+
+任何驱动第一步首先是寻找到要操作的设备，我们先来看看HID驱动是怎样寻找到设备的。我们假设寻找设备的函数`Device_Find`(注：代码只是为了方便解说，不保证代码的健全)。我们简单看一下使用hid驱动寻找设备的实现，然后在看一下libusb是如何寻找设备的。
 
 ```C
 int Device_Find()
@@ -611,7 +613,7 @@ struct usb_bus    *bus;
 
 ## 3.2 打开设备
 
-假设我们定义的打开设备的函数名是device_open：
+假设我们定义的打开设备的函数名是`Device_open`。
 
 ```C
 /* 使用hid驱动打开设备 */
@@ -635,12 +637,11 @@ int Device_Open()
 
 ## 3.3 读写设备和操作设备
 
-假设我们的设备使用控制传输方式，至于批处理传输和中断传输限于篇幅这里不介绍。我们这里定义三个函数：
+假设我们的设备使用控制传输方式，至于批处理传输和中断传输限于篇幅这里不介绍。我们这里定义三个函数： Device_Write, Device_Read, Device_Report。
 
-- Device_Write, Device_Read, Device_Report
-- Device_Report 功能发送接收函数
-- Device_Write 功能写数据
-- Device_Read   功能读数据
+- `Device_Report` 功能发送接收函数
+- `Device_Write` 功能写数据
+- `Device_Read`   功能读数据
 
 `Device_Write`和`Device_Read`调用`Device_Report`发送写的信息和读的信息，开发者根据发送的命令协议来设计，我们这里只简单实现发送数据的函数。
 
