@@ -57,11 +57,66 @@ QE-Pro
     397                 int claim_err = usb_claim_interface(deviceHandle, interface);
     ...
     403                     usb_close(deviceHandle);
-    ```
-
+    
     486  int
     487 USBClose(void * deviceHandle)
     ...
     496     usb = (__usb_interface_t *) deviceHandle;
     ...
     504     __close_and_dealloc_usb_interface(usb);
+    ```
+
+    ```C
+    /** A USB bus */
+    struct usb_bus {
+            /** Name */
+            const char *name;
+            /** Underlying hardware device */
+            struct device *dev;
+            /** Host controller operations set */
+            struct usb_host_operations *op;
+    
+            /** Largest transfer allowed on the bus */
+            size_t mtu;
+            /** Address in-use mask
+            *
+            * This is used only by buses which perform manual address
+            * assignment.  USB allows for addresses in the range [1,127].
+            * We use a simple bitmask which restricts us to the range
+            * [1,64]; this is unlikely to be a problem in practice.  For
+            * comparison: controllers which perform autonomous address
+            * assignment (such as xHCI) typically allow for only 32
+            * devices per bus anyway.
+            */
+            unsigned long long addresses;
+    
+            /** Root hub */
+            struct usb_hub *hub;
+    
+            /** List of USB buses */
+            struct list_head list;
+            /** List of devices */
+            struct list_head devices;
+            /** List of hubs */
+            struct list_head hubs;
+    
+            /** Host controller operations */
+            struct usb_bus_host_operations *host;
+            /** Host controller private data */
+            void *priv;
+    };
+
+    typedef struct usb_dev_handle {
+        int fd;
+        struct usb_bus *bus;
+        struct usb_device *device;
+        int config;
+        int interface;
+        int altsetting;
+        /* Added by RMT so implementations can store other per-open-device data */
+        void *impl_info;
+    } usb_dev_handle;
+    ```
+
+- The issue is most likely that interface is claimed by another Linux driver. call  `libusb_detach_kernel_driver()` and specify the interface number and then you should be able to connect it.
+- Did you call libusb_set_configuration() before `libusb_claim_interface()`? This must be called even if there is only one configuration in the descriptor.
