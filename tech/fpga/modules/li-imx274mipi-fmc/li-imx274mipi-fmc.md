@@ -18,3 +18,5 @@ LI-IMX274MIPI-FMC
 - [White Balance and ColorCorrection in Digital Cameras](https://www.nxp.com/docs/en/application-note/AN1904.pdf){:target="_blank"}
 
 - [MIPI interface Technology Development issues (green display on portrait)](https://forums.xilinx.com/t5/Video-and-Audio/MIPI-interface-Technology-Development-issues-green-display-on/td-p/874829){:target="_blank"}
+
+- [mipi调试之 mipi raw 数据格式](https://zhuanlan.zhihu.com/p/113422207){:target="_blank"}
