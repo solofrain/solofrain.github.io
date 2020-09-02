@@ -13,3 +13,8 @@ LI-IMX274MIPI-FMC
 
     [https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842370/reVISION+Getting+Started+Guide?responseTo+target=](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842370/reVISION+Getting+Started+Guide?responseTo+target=){:target="_blank"}
     
+- [Setup of IMX274 exposure, gain and gamma](https://forums.xilinx.com/t5/SDSoC-Environment-and-reVISION/Setup-of-IMX274-exposure-gain-and-gamma/td-p/854104){:target="_blank"}
+
+- [White Balance and ColorCorrection in Digital Cameras](https://www.nxp.com/docs/en/application-note/AN1904.pdf){:target="_blank"}
+
+- [MIPI interface Technology Development issues (green display on portrait)](https://forums.xilinx.com/t5/Video-and-Audio/MIPI-interface-Technology-Development-issues-green-display-on/td-p/874829){:target="_blank"}
