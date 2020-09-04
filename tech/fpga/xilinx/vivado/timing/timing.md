@@ -20,3 +20,5 @@
 - [FPGA时序约束实战](fpga-timing-constraint-practice.md)
 
 - [DCM/DLL/PLL/MMCM区别](dcm-dll-pll-mmcm.md)
+
+- [Constraining Asynchronous Clocks](https://forums.xilinx.com/t5/Adaptable-Advantage-Blog/Constraining-Asynchronous-Clocks/ba-p/657880#comments){:target="_blank"}

@@ -86,7 +86,7 @@ If `libusb-dev` is not installed, it reports:
 Error: NativeUSBLinux.c:35:17: fatal error: usb.h: No such file or directory 
 ```
 
-## 1.6 Expose libseabreeze.so
+## 1.6 Expose libseabreeze.so to other programs
 
 Either set system variable:
 
@@ -94,7 +94,7 @@ Either set system variable:
 export LD_LIBRARY_PATH="$PWD/lib"
 ```
 
-Or install `libseabreeze.so`into a system library directory like `/usr/local/lib` that `ld.so` knows about.
+Or install `libseabreeze.so` into a system library directory like `/usr/local/lib` that `ld.so` knows about.
 
 # 2. Build the IOC
 
