@@ -55,6 +55,6 @@
 
 ## 1.5 [Machine Learning](tech/machine-learning/machine-learning.md)
 
-## 1.6 EPICS
+## 1.6 [EPICS](tech/epics/epics.md)
 
 # 2. Read
