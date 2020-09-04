@@ -1,6 +1,5 @@
-Building QEPro IOC Based on Seabreeze Libraryy
-=================================================
-
+Building QEPro IOC Based on Seabreeze Library
+==
 
 
 > Examples have been built on
@@ -51,7 +50,7 @@ $(CPP) -o $@ lib/*.o  $(LFLAGS_LIB) -lusb
 
 Otherwise IOC compilation will report errors:
 
-```
+```bash
 libseabreeze.so: undefined reference to `usb_close'
 libseabreeze.so: undefined reference to `usb_bulk_write'
 libseabreeze.so: undefined reference to `usb_claim_interface'
@@ -71,7 +70,7 @@ libseabreeze.so: undefined reference to `usb_reset'
 
 In `./src/common/Log.cpp`, add `{}` to `if` statement at line 163 and line 180, otherwise it may report:
 
-```
+```bash
 error: this ‘if’ clause does not guard... [-Werror=misleading-indentation]
 ```
 
@@ -79,7 +78,7 @@ error: this ‘if’ clause does not guard... [-Werror=misleading-indentation]
 
 If `libusb-dev` is not installed, it reports:
 
-```
+```bash
 Error: NativeUSBLinux.c:35:17: fatal error: usb.h: No such file or directory 
 ```
 
