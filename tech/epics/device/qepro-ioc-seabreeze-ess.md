@@ -21,9 +21,11 @@ API manual
 
 libusb-dev
 
-## 1.2 Download seabreeze-3.0.11
+## 1.2 Download SeaBreeze
 
 <https://sourceforge.net/projects/seabreeze/>{:target="_blank"}
+
+<https://github.com/solofrain/seabreeze>{:target="_blank"}
 
 ## 1.3 Modify Makefiles
 
