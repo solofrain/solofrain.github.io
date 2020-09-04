@@ -19,7 +19,9 @@ API manual
 
 ## 1.1 Dependence: 
 
-libusb-dev
+- libusb-dev
+- gcc
+- g++
 
 ## 1.2 Download SeaBreeze
 
@@ -83,6 +85,16 @@ If `libusb-dev` is not installed, it reports:
 ```bash
 Error: NativeUSBLinux.c:35:17: fatal error: usb.h: No such file or directory 
 ```
+
+## 1.6 Expose libseabreeze.so
+
+Either set system variable:
+
+```bash
+export LD_LIBRARY_PATH="$PWD/lib"
+```
+
+Or install `libseabreeze.so`into a system library directory like `/usr/local/lib` that `ld.so` knows about.
 
 # 2. Build the IOC
 
