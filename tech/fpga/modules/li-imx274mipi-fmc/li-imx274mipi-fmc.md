@@ -20,3 +20,5 @@ LI-IMX274MIPI-FMC
 - [MIPI interface Technology Development issues (green display on portrait)](https://forums.xilinx.com/t5/Video-and-Audio/MIPI-interface-Technology-Development-issues-green-display-on/td-p/874829){:target="_blank"}
 
 - [mipi调试之 mipi raw 数据格式](https://zhuanlan.zhihu.com/p/113422207){:target="_blank"}
+
+- [UG1250 Zynq UltraScale+ VCU TRD User Guide](https://www.xilinx.com/support/documentation/boards_and_kits/zcu106/2020_1/ug1250-zcu106-vcu-trd.pdf){:target="_blank"}
