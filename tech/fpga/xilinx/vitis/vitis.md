@@ -1,7 +1,13 @@
 Vitis
 ===
 
-## 1. Tutorial
+## 1. Document
+
+- [Vitis Unified Software Development Platform 2020.1 Documentation](https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/index.html){:target="_blank"}
+
+- [Vitis HLS Libraries Reference](https://www.xilinx.com/html_docs/xilinx2020_1/vitis_doc/vitishlslibrariesreference.html){:target="_blank"}
+
+## 2. Tutorial
 
 - [2020.1 Vitis™ Application Acceleration Development Flow Tutorials](https://github.com/Xilinx/Vitis-Tutorials){:target="_blank"}
 
@@ -22,3 +28,15 @@ Vitis
 -|:-:|-
 [Controlling Vivado Implementation](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.1/docs/controlling-vivado-impl/README.md){:target="_blank"} | RTL | This tutorial demonstrates how you can control the Vivado® tools flow when implementing your project.
 
+
+
+- [Xilinx Vitis-In-Depth-Tutorial ](https://github.com/Xilinx/Vitis-In-Depth-Tutorial){:target="_blank"}
+
+- Building Accelerated Applications with Vitis
+    - [Video](https://app.livestorm.co/adiuvo-engineering/building-accelerated-applications-with-vitis/live?s=c5d2a454-9f0c-429d-963c-3cc5a8d999a6#/chat){:target="_blank"}
+
+    - [Document](https://github.com/ATaylorCEngFIET/Building-Accelerated-Applications-with-Vitis){:target="_blank"}
+
+        - [Slides](tech/fpga/xilinx/vitis/Building-Accelerated-Applications-with-Vitis.pdf){:target="_blank"}
+
+        - [Lab](tech/fpga/xilinx/vitis/Building-Accelerated-Applications-with-Vitis-Course-Workbook.pdf){:target="_blank"}

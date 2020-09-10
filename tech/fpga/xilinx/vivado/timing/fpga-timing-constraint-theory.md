@@ -1,6 +1,8 @@
 FPGA时序约束理论
 ==
 
+Original post: <http://www.technomania.cn/tutorials/fpga/timing-analysis/>{:target="_blank"}
+
 # 周期约束理论
 
   首先来看什么是时序约束，泛泛来说，就是我们告诉软件（Vivado、ISE等）从哪个pin输入信号，输入信号要延迟多长时间，时钟周期是多少，让软件PAR(Place and  Route)后的电路能够满足我们的要求。因此如果我们不加时序约束，软件是无法得知我们的时钟周期是多少，PAR后的结果是不会提示时序警告的。
