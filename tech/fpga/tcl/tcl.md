@@ -1,6 +1,6 @@
 Tcl
 ==
 
-- [Loop](tech/fpga/tcl/tcl-loop.md)
+- [Loop](tcl-loop.md)
 
-- [regex](tech/fpga/tcl/tcl-regex.md)
+- [regex](tcl-regex.md)
