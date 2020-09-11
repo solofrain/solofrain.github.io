@@ -92,8 +92,14 @@ A+    # 这也是一个模式，代表一个或者任意多个A字符
         - 将匹配结果作为List返回。`"-inline"` 选项的作用。
                 
             ```tcl
+            set str {this is a cat}
             set rv [regexp -inline {is a ([a-z]+)} $str ]
-            puts $rv ; # rv = {{is a cat} {cat}}
+            puts $rv
+            ```
+
+            Output:
+            ```tcl
+            {is a cat} cat
             ```
 
     - regsub
