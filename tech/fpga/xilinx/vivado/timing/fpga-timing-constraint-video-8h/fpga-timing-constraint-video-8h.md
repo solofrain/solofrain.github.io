@@ -1,5 +1,5 @@
-八小时超长视频教你掌握FPGA时序约束
-==
+# 八小时超长视频教你掌握FPGA时序约束
+
 
 Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 
@@ -7,18 +7,15 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 链接: <https://pan.baidu.com/s/1AXvJKXzFjahE5ZLa4pE_8w >{:target="_blank"}  
 提取码: y6ud 
 
-# 1. 时序分析基础知识
+## 1. 时序分析基础知识
 
-## 1.1 什么是时序分析？
+### 1.1 什么是时序分析？
 
 时序分析本质上就是一种时序检查，目的是检查设计中所有的D触发器是否能够正常工作，也就是检查D触发器的同步端口（数据输入端口）的变化是否满足建立时间要求（Setup）和保持时间要求（Hold）；检查D触发器的异步端口（异步复位端口）的变化是否满足恢复时间要求（Recovery）和移除时间要求（Removal）。
 
-[^_^]:
-    ![](https://upload-images.jianshu.io/upload_images/16278820-f261f3a949a50e1a.png)
-
 ![](1.png)
 
-## 1.2 时序分析有哪些类型？
+### 1.2 时序分析有哪些类型？
 
 时序分析包括静态时序分析（STA）和动态时序分析。
 
@@ -26,7 +23,7 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 
 - 静态时序分析：采用穷尽分析方法来提取出整个电路存在的所有时序路径，计算信号在这些路径上的传播延时，检查信号的建立和保持时间是否满足时序要求，通过对最大路径延时和最小路径延时的分析，找出违背时序约束的错误。它不需要输入向量就能穷尽所有的路径，且运行速度很快、占用内存较少，不仅可以对芯片设计进行全面的时序功能检查，而且还可利用时序分析的结果来优化设计，因此静态时序分析已经越来越多地被用到数字集成电路设计的验证中。
 
-## 1.3 时序分析使用的工具有哪些？
+### 1.3 时序分析使用的工具有哪些？
 
 静态时序分析使用的工具：
 
@@ -40,7 +37,7 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 - Cadence NC-Verilog
 - Sysnopsys  VCS
 
-## 1.4 静态时序分析之前的准备工作
+### 1.4 静态时序分析之前的准备工作
 
 撰写基本的时序约束文件，告知时序引擎一些必要的信息（比如时钟，输入输出延时等）。若没有正确的时序约束，那么时序分析的结果是没有意义的。
 
@@ -49,7 +46,7 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 
 (https://upload-images.jianshu.io/upload_images/16278820-f4db83c260dc29ea.png)
 
-## 1.5 时序分析中的常用术语
+### 1.5 时序分析中的常用术语
 
 - 源时钟（Source Clock/Launch Clock，也称为发起时钟）
 - 目的时钟（Destination Clock/Capture Clock，也称为捕获时钟）
@@ -57,9 +54,6 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 - 捕获沿（capture edge,目的时钟捕获数据的有效时钟沿）发起沿通常在0ns，捕获沿通常在下一个发起沿，发起沿和捕获沿通常相差一个时钟周期。
 
 ![](4.png)
-
-[^_^]:
-    ![](https://upload-images.jianshu.io/upload_images/16278820-0e087e4f622890be.png)
 
 ## 1.6 一条普通时序路径的三要素
 
@@ -71,22 +65,14 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 
 ![](5.png)
 
-[^_^]:
-    (https://upload-images.jianshu.io/upload_images/16278820-a2e757ab88ff5e0e.png)
-
 ## 1.7 FPGA中常见的四种时序路径
 
 ![](6.png)
 
-[^_^]:
-    (https://upload-images.jianshu.io/upload_images/16278820-7e62b58cd7ca85e4.png)
 
 **第一种，从FPGA的输入端口到目的寄存器的数据输入端口 。**
 
 ![](7.png)
-
-[^_^]:
-    (https://upload-images.jianshu.io/upload_images/16278820-dd8c68716e89e702.png)
 
 - 数据由Board clock发起并在FPGA外部产生；
 - 数据经过Input Delay的延迟后到达FPGA的输入端口；
@@ -96,9 +82,6 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 
 ![](8.png)
 
-[^_^]:
-    (https://upload-images.jianshu.io/upload_images/16278820-1324828c4e3dc953.png)
-
 - 数据由源时钟发起并在FPGA内部产生；
 - 数据经过Data Path Delay后到达由目的时钟驱动的目的寄存器。这种时序路径是最常见的，用户需要约束`源时钟`和`目的时钟`告知时序引擎必要的信息，时序引擎才能正确的分析这种时序路径。
 
@@ -106,8 +89,6 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 
 ![](9.png)
 
-[^_^]:
-    https://upload-images.jianshu.io/upload_images/16278820-0e8cca2a51a72a2f.png)
 
 - 数据由源时钟发起并在FPGA内部产生；
 - 数据经过`Internal Delay`后到达输出端口；
@@ -117,8 +98,6 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 
 ![](10.png)
 
-[^_^]:
-    (https://upload-images.jianshu.io/upload_images/16278820-246df11ad75d3597.png)
 
 - 数据横穿FPGA，没有经过任何触发器，这种路径也叫`in-to-out path`，约束输入和输出延时的参考时钟可以使用虚拟时钟。这种路径中只有数据路径，用户需要约束`Input Delay`和`Output Delay`，告知时序引擎必要的信息，时序引擎才能正确的分析这种时序路径。
 
@@ -134,7 +113,6 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 
 ![](11.png)
 
-(https://upload-images.jianshu.io/upload_images/16278820-7e83f629b9f497bc.png)
 
 在上图中，有建立时间要求有两个：`Setup(1)`和`Setup(2)`。取更小的`Setup(2)`，然后分别取对应的`Launch edge`和`Capture edge`对应的时间为`Source Clock Launch Edge Time`和`Destination Clock Capture Edge Time`：
 
@@ -144,9 +122,9 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 
 - 计算数据的需求时间
 
-$$
-Data\_Required\_Time (setup) = capture\_edge\_time + destination\_clock\_path\_delay - clock\_uncertainty - setup\_time
-$$
+    $$
+    Data\_Required\_Time (setup) = capture\_edge\_time + destination\_clock\_path\_delay - clock\_uncertainty - setup\_time
+    $$
 
 [^_^]:
     $$
