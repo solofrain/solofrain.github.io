@@ -13,7 +13,7 @@
 
 - [PCIe: Xilinx’ pipe_clock module and its timing constraints](http://billauer.co.il/blog/2017/02/pipe-clock-pcie-xilinx/){:target="_blank"}
 
-- [八小时超长视频教你掌握FPGA时序约束](fpga-timing-constraint-video.md) 
+- [八小时超长视频教你掌握FPGA时序约束](fpga-timing-constraint-video-8h.md) 
 
 - [FPGA时序约束理论](fpga-timing-constraint-theory.md)
 
