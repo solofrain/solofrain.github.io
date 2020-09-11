@@ -19,9 +19,9 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 
 时序分析包括静态时序分析（STA）和动态时序分析。
 
-- 动态时序分析：将布局布线生成的布线延迟信息反标注到门级网表中进行仿真，检查是否存在时序违例。此时的仿真包括门延迟和布线延迟信息，能够较好反应芯片的实际工作情况。因为不可能产生完备的测试向量，覆盖门级网表中的每一条路径。因此在动态时序分析中，无法暴露一些路径上可能存在的时序问题。
+- **动态时序分析**    将布局布线生成的布线延迟信息反标注到门级网表中进行仿真，检查是否存在时序违例。此时的仿真包括门延迟和布线延迟信息，能够较好反应芯片的实际工作情况。因为不可能产生完备的测试向量，覆盖门级网表中的每一条路径。因此在动态时序分析中，无法暴露一些路径上可能存在的时序问题。
 
-- 静态时序分析：采用穷尽分析方法来提取出整个电路存在的所有时序路径，计算信号在这些路径上的传播延时，检查信号的建立和保持时间是否满足时序要求，通过对最大路径延时和最小路径延时的分析，找出违背时序约束的错误。它不需要输入向量就能穷尽所有的路径，且运行速度很快、占用内存较少，不仅可以对芯片设计进行全面的时序功能检查，而且还可利用时序分析的结果来优化设计，因此静态时序分析已经越来越多地被用到数字集成电路设计的验证中。
+- **静态时序分析**    采用穷尽分析方法来提取出整个电路存在的所有时序路径，计算信号在这些路径上的传播延时，检查信号的建立和保持时间是否满足时序要求，通过对最大路径延时和最小路径延时的分析，找出违背时序约束的错误。它不需要输入向量就能穷尽所有的路径，且运行速度很快、占用内存较少，不仅可以对芯片设计进行全面的时序功能检查，而且还可利用时序分析的结果来优化设计，因此静态时序分析已经越来越多地被用到数字集成电路设计的验证中。
 
 ### 1.3 时序分析使用的工具有哪些？
 
@@ -44,7 +44,6 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
 ![](2.png)
 ![D触发器中Tsetup，Thold，Tco的由来](3.png)
 
-(https://upload-images.jianshu.io/upload_images/16278820-f4db83c260dc29ea.png)
 
 ### 1.5 时序分析中的常用术语
 
@@ -126,25 +125,6 @@ Original post: <https://my.oschina.net/u/4583591/blog/4455472>{:target="_blank"}
     Data\_Required\_Time (setup) = capture\_edge\_time + destination\_clock\_path\_delay - clock\_uncertainty - setup\_time
     $$
 
-[^_^]:
-    $$
-Data\ Required\ Time (setup) &= capture\ edge\ time + destination\ clock\ path\ delay - clock\ uncertainty - setup\ time
-$$
-
-[^_^]:
-    $$
-\begin{equation}
-\begin{aligned}
-Data\ Required\ Time (setup) &= capture\ edge\ time \\
-&+ destination\ clock\ path\ delay \\
-&- clock\ uncertainty \\
-&- setup\ time
-\end{aligned}
-\end{equation}
-$$
-
-[^_^]:
-    ![](https://upload-images.jianshu.io/upload_images/16278820-9c3d54b58de5b396.png)
 
 - 计算数据的到达时间
 
@@ -152,19 +132,6 @@ $$
 Data\_Arrival\_Time (setup) = launch\_edge\_time + source\_clock\_path\_delay + datapath\_delay
 $$
 
-[^_^]:
-    $$
-\begin{equation}
-\begin{aligned}
-Data\ Arrival\ Time (setup) &= launch\ edge\ time \\
-&+ source\ clock\ path\ delay \\
-&+ datapath\ delay
-\end{aligned}
-\end{equation}
-$$
-
-[^_^]:
-    ![](https://upload-images.jianshu.io/upload_images/16278820-b6d4cbafbc49e4dd.png)
 
 - 计算Setup的裕量（Slack）
 
@@ -191,17 +158,17 @@ Setup Slack= Data Require Time  - Data Arrival Time
 
 ## 2.3 根据公式分析哪些因素会导致Setup Slack为负呢？
 
-Setup Slack = （Capture edge – Launch edge）+ （destination clk delay – source clk delay）- Setup time - clk uncertainty – datapath delay 
+Setup Slack = (Capture edge – Launch edge) + (destination clk delay – source clk delay) - Setup time - clk uncertainty – datapath delay 
 
-Setup Slack =  Setup Requirement（一定大于0） + clk skew – Tsu – Tclk uncertainty – Tlogic – Tnet - Tco
+Setup Slack =  Setup Requirement (一定大于0) + clk skew – Tsu – Tclk uncertainty – Tlogic – Tnet - Tco
 
-**① Setup Requirement 与实际情况不符**
+### ① Setup Requirement 与实际情况不符
 
 建立时间需求过小，这种情况通常会在同步跨时钟域路径中出现，在同步跨时钟域路径中的源时钟频率与目的时钟频率的相位关系虽然是已知的，但是时序引擎默认选择的捕获沿通常都是错误的，需要用户通过多周期路径约束的方式手动修正建立时间需求。比如下图中，两个同频不同相的同步时钟，时序引擎默认选择的捕获沿是目的时钟第二个上升沿，导致建立时间需求非常小，最终肯定会导致时序违例。
 
 ![](15.png)
 
-**② clk skew为负值，且很大**
+### ② clk skew为负值，且很大
 
 通常情况下，同一个时钟下的时钟歪斜不应该超过300ps，同步跨时钟域路径的时钟歪斜不应该超过500ps，异步跨时钟域路径的时钟歪斜一般比较大，因为它们的时钟源不同。当出现时钟歪斜大的情况时:
 
@@ -210,13 +177,13 @@ Setup Slack =  Setup Requirement（一定大于0） + clk skew – Tsu – Tclk 
 
 ![](16.png)
 
-**③ $T_{su}$/$T_{co}$大**
+### ③ $T_{su}$/$T_{co}$大
 
 当设计中使用Block（DSP/Block RAM等）时，应该要注意以下问题。对于以这些Block为时序路径的起点或终点的时序路径，这些Block的Tsu/Th/Tco都比普通的寄存器大，而且这些Block的布线延时和时钟歪斜比较大。所以当使用这些Block作为时序路径的终点时，它的起点一定要是触发器，比如说一个Block RAM的写数据信号，输入进Block前最好打一拍。当使用这些Block作为时序路径的起点时，应该使用Block 内部的输出寄存器，比如使用由Block RAM组成的FIFO时，尽量不要使用首字置出的，而使用打一拍后输出的，使用后者可以显著降低Tco。当时序路径为从一个Block到另一个Block时，中间需要进行打拍操作。当使用这些Block的控制端口时，应该保证这些控制信号的低扇出，如使用由Block RAM组成的FIFO时，应该尽量降低读/写能信/地址信号的扇出。
 
 ![](17.png)
 
-**④ $T_{logic}$大**
+### ④ $T_{logic}$大
 
 一般情况下，逻辑延时与时序路径的逻辑层级数息息相关，逻辑层级是指时序路径的起点和终点之间组合逻辑单元（LUT）的个数，而逻辑层级多一级意味着多1个LUT的延时加1条连接LUT的网线延时。通常一级逻辑层级的延时标准是1个LUT加1根网线的总延迟为0.5ns，如果某条路径的逻辑级数大于时钟周期/0.5ns，那么这条路径就被称为长路径。
 
@@ -228,7 +195,7 @@ Setup Slack =  Setup Requirement（一定大于0） + clk skew – Tsu – Tclk 
 
 ![](18.png)
 
-**⑤Tnet大**
+### ⑤ $T_{net}大
 
 一般情况下，布线延迟与设计整体或局部模块的资源利用率以及拥塞程度息息相关。在正常情况下，一条网线的延时小于1ns，在发生拥塞的区域，网线的延时可能达到若干ns，导致布线延时显著增加。为了解决布线延迟大，需要从降低资源利用率和降低拥塞程度下手，比如某个模块使用了大量的寄存器堆，占用了大量的资源，此时应该考虑使用Block RAM代替这些寄存器堆；某个模块使用了大量的数据选择器，此时应该考虑如何优化这些数据选择器；某个模块的控制信号扇出比较大，与其他模块的互联很重，此时应该考虑如何降低这些信号的扇出；某条时序路径的起点或终点是Block，由于Block的位置比较固定，所以Block的布线延迟会大一些。最后需要强调的是，一定要额外关注高扇出的网线也会对布线延时产生影响。
 
@@ -240,7 +207,7 @@ Setup Slack =  Setup Requirement（一定大于0） + clk skew – Tsu – Tclk 
 
 ## 3.1 时序引擎如何进行Holdup检查？
 
-**① 确定保持时间要求（确定发起时钟沿和捕获时钟沿）**
+### ① 确定保持时间要求（确定发起时钟沿和捕获时钟沿）
 
 保持时间要求是以建立时间要求为基础的，保持时间要求有两种： 
 
@@ -264,25 +231,23 @@ For setup S2:
     $Hold\ Path\ Requirement\ (H2a) = (2-1) *T_{clk1} - 1*T_{clk0} = -2\ ns$
     $Hold\ Path\ Requirement\ (H2b) = 2*T_{clk1} - (1+1)*T_{clk0} = -4\ ns$
 
-**② 计算数据的需求时间**
+### ② 计算数据的需求时间
 
 ![](23.png)
 
 
-**③ 计算数据的到达时间**
+### ③ 计算数据的到达时间
 
 ![](24.png)
 
-**④ 计算Hold up的裕量（slack）**
+### ④ 计算Hold up的裕量（slack）
 
 ![](25.png)
 
 ## 3.2 Holdup分析实例
 
     Data Arrival time（new data） = lauch edge + Tclka + Tco + Tdata(Tlogic+Tnet) 
-
     Data Require time = capture edge + Tclkb + Th 
-
     Hold up slack = Data Arrival time - Data Require time
 
 ![](26.png)
@@ -293,13 +258,13 @@ For setup S2:
 
      Holdup Slack =  Tco + Tdata(Tlogic+Tnet) -Th - Holdup Requirement - clk skew  
 
-Hold up Slack为负的情况比较少见，当Setup Slack有较大裕量时，通常工具会自动插入延时来增加Hold up Slack。
+Hold up Slack为负的情况比较少见，当 Setup Slack 有较大裕量时，通常工具会自动插入延时来增加 Hold up Slack。
 
-**① 保持时间需求大于0（通常由时序引擎选择错误的捕获沿导致）**
+### ① 保持时间需求大于0（通常由时序引擎选择错误的捕获沿导致）
 
-**② 时钟歪斜大于300ps（通常由时钟路径上的组合逻辑导致）**
+### ② 时钟歪斜大于300ps（通常由时钟路径上的组合逻辑导致）
 
-**③ Th过大（通常由时序路径终点为Block导致）**
+### ③ Th过大（通常由时序路径终点为Block导致）
 
 ![TimeQuest时序分析（Holdup slack）](27.png)
 
@@ -326,7 +291,7 @@ Hold up Slack为负的情况比较少见，当Setup Slack有较大裕量时，�
 - 第一种路径需要约束Input_delay；
 - 第二种路径需要约束时钟；
 - 第三种路径需要约束output_delay；
-- 第四种路径需要约束Max_delay/Min_delay；
+- 第四种路径需要约束Max_delay/Min_delay。
 
 ![](32.png)
 
@@ -346,7 +311,7 @@ Hold up Slack为负的情况比较少见，当Setup Slack有较大裕量时，�
 
     生成时钟（Generated Clock）有两种类型：第一种是由FPGA的专用时钟管理模块（PLL/MMCM）产生的时钟（这种时钟可以由时序引擎自动推断出来）；第二种是由用户通过LUT或寄存器产生的时钟（这种时钟必须由用户手动约束）。
 
-**① 主时钟（Primary Clock）约束**
+### ① 主时钟（Primary Clock）约束
 
 使用Create_clock进行时序约束
 
@@ -362,21 +327,42 @@ Hold up Slack为负的情况比较少见，当Setup Slack有较大裕量时，�
 
 ![](35.png)
 
-**② 生成时钟（Generated Clock）约束**
+### ② 生成时钟（Generated Clock）约束
 
-用Create_generated_clock进行时序约束 每个生成时钟都会对应一个时钟源（Master_clk），这个时钟源可以是Primary Clock或者另一个Generated Clock。在约束生成时钟时，用户不需要描述生成时钟的周期和波形，只需要描述由Master_clk经过了怎样的变化而产生的生成时钟即可。比如经过分频（-devide_by），倍频(-multiply_by)，反相（-invert），相移（-edge_shift）等等操作。
+**用 `Create_generated_clock` 进行时序约束**    每个生成时钟都会对应一个时钟源（Master_clk），这个时钟源可以是Primary Clock或者另一个Generated Clock。在约束生成时钟时，用户不需要描述生成时钟的周期和波形，只需要描述由Master_clk经过了怎样的变化而产生的生成时钟即可。比如经过分频（`-devide_by`），倍频(`-multiply_by`)，反相（`-invert`），相移（`-edge_shift`）等等操作。
 
-![](36.png)
+Specify the master clock using the `-source` option. This indicates a pin or port in the design through which the master clock propagates. It is common to use the master clock source point or the input clock pin of generated clock source cell.
+
 ![](37.png)
-![](38.png)
-![](39.png)
 
-当生成时钟需要进行相移时，使用-edge_shift选项。-edge_shift不能与-divide_by/-multipl_by/-invert同时使用 。
+```tcl
+create_clock -name clkin -period 10 [get_ports clkin]
+
+# Option 1: master clock source is the primary clock source point
+create_generated_clock -name clkdiv2 -source [get_ports clkin] -divide_by 2 [get_ins REGA/Q]
+
+# Option 2: master clock source is the REGA clock pin
+create_generated_clock -name clkdiv2 -source [get_ports REGA/C] -divide_by 2 [get_ins REGA/Q]
+
+# waveform specified with -edge instead of -divide_by 
+create_generated_clock -name clkdiv2 -source [get_pins REGA/C] -edges {1 3 5} [get_ins REGA/Q]
+```
+
+
+
+当生成时钟需要进行相移时，使用 `-edge_shift` 选项。`-edge_shift` 不能与 `-divide_by` / `-multipl_by` / `-invert` 同时使用 。
 
 ![](40.png)
-![](41.png)
+```tcl
+create_clock -name clkin -period 10 [get_ports clkin]
+create_generated_clock -name clkshift -source [get_pins mmcm0/CLKIN] -edge {1 2 3} \
+                       -edge_shift {2.5 0 2.5} [get_pins mmcm0/CLKOUT]
+# First rising edge:  0ns + 2.5ns = 2.5ns
+# Second rising edge: 5ns +   0ns = 5ns
+# Third rising edge: 10ns + 2.5ns = 12.5ns
+```
 
-时序引擎默认情况下会分析所有时钟之间的时序路径，用户可以通过时钟分组（ set_clock_group）命令或伪路径（set_false_path）命来关闭一部分路径的时序分析。
+时序引擎默认情况下会分析所有时钟之间的时序路径，用户可以通过时钟分组（ `set_clock_group`）命令或伪路径（`set_false_path`）命来关闭一部分路径的时序分析。
 
 - 使用`set_clock_group`命令，时序引擎会将不同分组的时钟之间的路径分析关闭，相同分组的时钟之间的路径仍然存在。
 
@@ -384,17 +370,17 @@ Hold up Slack为负的情况比较少见，当Setup Slack有较大裕量时，�
 
 ## 6.2 两个时钟的关系
 
-**① 同步时钟（synchronous clock）**
+### ① 同步时钟（synchronous clock）
 
 两个时钟之间的相对相位关系是固定的（两个时钟来源于同一个Primary clock），并且这两个时钟的频率的最小公共周期是个整数。比如一个生成时钟（200M）和该生成时钟的Master_clk（100M）之间就属于同步时钟关系，因为这两个时钟的相位关系肯定是确定的，并且可以找到两个时钟的最小公共周期。通常情况下，一个Primary Clock和它产生的生成时钟之间都属于同步时钟关系，除非找不到最小公共周期。 属于同步时钟关系的两个时钟之间的路径是可以进行时序分析的。
 
-**② 异步时钟（ asynchronous clock ）**
+### ② 异步时钟（ asynchronous clock ）
 
 两个时钟之间的相对相位关系不确定。比如FPGA上两个晶振分别产生两个Primary clock（相对相位关系不固定），这两个Primary clock分别从FPGA的两个全局时钟引脚输入给两个MMCM，由两个MMCM分别产生的生成时钟之间属于异步时钟。一般情况下，不同的Primary clock之间都属于异步时钟，这些Primary clock分别产生的生成时钟之间也属于异步时钟关系。 **属于异步时钟关系的两个时钟之间的路径无法进行正确的时序分析。
 
 一般情况下，如果用户不通过时钟分组对时钟之间的关系进行约束，时序引擎会默认所有的时钟之间都属于同步时钟关系。
 
-**③ 不可扩宽的时钟（unexpandable clock）**
+### ③ 不可扩宽的时钟（unexpandable clock）
 
 对于这类时钟，时序引擎无法在1000个时钟周期内找到两个时钟的公共周期，时序引擎就会从这1000个时钟周期中找到建立时间需求最差的情况，并进行时序分析，然而它不一定FPGA实际允许过程中建立时间需求最差的情况，因为在1000个时钟周期外可能还会有建立时间需求更差的情况，这样一来，时序引擎的分析结果就无法保证该路径一定不会出现问题，所以时序引擎的分析结果也就变的无意义。比如说由同一个Primary Clock驱动的两个MMCM的生成时钟分别是clk0（5.125ns）和clk1（6.666ns），虽然它们的相对相位关系是固定的，但是时序引擎无法保证对两个时钟之间路径的分析属于最差情况，这种情况和异步时钟之间的时序分析类似，时序分析的结果都看起来正常，但是这个结果确是不可信的。所以对这种时钟的处理方式与处理异步时钟是相同的，用户都需要进行跨时钟域的操作。
 
@@ -406,10 +392,15 @@ Hold up Slack为负的情况比较少见，当Setup Slack有较大裕量时，�
 
 - 第二个Primary clock clk1是一个高速收发器输出的恢复时钟，将该恢复时钟输入进一个MMCM，MMCM生成了两个生成时钟gtxclkrx， gtxclktx
 
-![](42.png)
-![](43.png)
-![时钟约束后时序引擎如何进行第二种路径时序分析
-](44.png)
+```tcl
+set_clock_groups -name async_clk0_clk1 -asynchronous -group {clk0 usrclk itfclk} \
+                 -group {clk1 gtclkrx gtclktx}
+set_clock_groups -name asyn_clk0_clk1 -asynchronous                  \
+                 -group [get_clocks -include_generated_clocks clk0]  \
+                 -group [get_clocks -include_generated_clocks clk1]
+```
+
+![时钟约束后时序引擎如何进行第二种路径时序分析](44.png)
 
 ![时钟约束后时序引擎如何进行第二种路径时序分析](45.jpg)
 
@@ -426,11 +417,11 @@ Input delay计算
 ![](47.png)
 ![](48.png)
 
-Max Input Delay = Tco(Max) + Tpcb(Max) - Clk skew(Min)
+$Max\ Input\ Delay = T_{co(Max)} + T_{pcb}(Max) - Clk_{skew}(Min)$
 
 ![](49.jpg)
 
-Min Input Delay = Tco(Min) + Tpcb(Min) - Clk skew(Max)
+$Min\ Input\ Delay = T_{co}(Min) + T_{pcb}(Min) - Clk_{skew}(Max)$
 
 ![](50.jpg)
 
@@ -453,11 +444,11 @@ Output delay计算
 
 ![](57.png)
 
-Max Output Delay = Tpcb(Max) + Tsu - Clk skew(Min) 
+$Max\ Output\ Delay = T_{pcb}(Max) + T_{su} - Clk_{skew}(Min)$
 
 ![](58.jpg)
 
-Min Output Delay = Tpcb(Min) - Th - Clk skew(Max)
+$Min\ Output\ Delay = T_{pcb}(Min) - T_h - Clk_{skew}(Max)
 
 ![](59.jpg)
 
@@ -481,9 +472,9 @@ Output delay约束
 
 ## 8.2 如何进行正确Multicycle约束？
 
-注：使用set_multicycle_path命令
+注：使用 `set_multicycle_path` 命令
 
-**① 在源时钟和目的时钟相同的情况下进行Multicycle约束**
+### ① 在源时钟和目的时钟相同的情况下进行Multicycle约束
 
 ![](64.png)
 
@@ -513,7 +504,7 @@ Output delay约束
 
 ![](74.png)
 
-**② 在源时钟和目的时钟频率相同且有正向偏移的情况下（正向偏移0.3ns）**
+### ② 在源时钟和目的时钟频率相同且有正向偏移的情况下（正向偏移0.3ns）
 
 ![](75.png)
 
@@ -525,13 +516,13 @@ Output delay约束
 
 ![](78.png)
 
-**③ 在源时钟和目的时钟频率相同且有负向偏移的情况下（负向偏移0.3ns）发生负向偏移时，通常不需要进行Multicycle的约束，除非负向偏移过大**
+### ③ 在源时钟和目的时钟频率相同且有负向偏移的情况下（负向偏移0.3ns）发生负向偏移时，通常不需要进行Multicycle的约束，除非负向偏移过大
 
 ![](79.png)
 
 ![](80.png)
 
-**④ 在源时钟和目的时钟频率不同的情况下（源时钟慢，目的时钟快）**
+### ④ 在源时钟和目的时钟频率不同的情况下（源时钟慢，目的时钟快）
 
 ![](83.png)
 
@@ -549,7 +540,7 @@ Output delay约束
 
 ![](88.png)
 
-**⑤ 在源时钟和目的时钟频率不同的情况下（源时钟快，目的时钟慢）**
+### ⑤ 在源时钟和目的时钟频率不同的情况下（源时钟快，目的时钟慢）
 
 ![](89.png)
 
@@ -577,7 +568,7 @@ Output delay约束
 
 - 减小综合/实现/时序分析的时间。
 
--  极大的提升工具对设计的综合/实现/优化的结果。-from/-to的node_list必须是有效的时序路径的起点和终点，或是时钟。-through的node_list可以是ports/pins。
+-  极大的提升工具对设计的综合/实现/优化的结果。`-from` / `-to` 的node_list必须是有效的时序路径的起点和终点，或是时钟。`-through` 的node_list可以是ports/pins。
 
 ```tcl
 set_false_path [-setup] [-hold] [-from <node_list>] [-to <node_list>] [-through <node_list>]
@@ -585,22 +576,22 @@ set_false_path [-setup] [-hold] [-from <node_list>] [-to <node_list>] [-through 
 
 ## 9.2 FalsePath约束举例
 
-注：使用set_false_path命令
+注：使用 `set_false_path` 命令
 
-**① 将异步复位信号设置为伪路径**
+### ① 将异步复位信号设置为伪路径
 
 ```tcl
 set_false_path -from [get_port reset] -to [all_registers]
 ```
 
 
-**② 将CLKA到CLKB的单向路径设置为伪路径 **
+### ② 将CLKA到CLKB的单向路径设置为伪路径 
 
 ```tcl
 set_false_path -from [get_clocks CLKA] -to [get_clocks CLKB]
 ```
 
-**③ 将CLKA到CLKB以及CLKB到CLKA的双向路径设置为伪路径 **
+### ③ 将CLKA到CLKB以及CLKB到CLKA的双向路径设置为伪路径
 
 ```tcl
 set_false_path -from [get_clocks CLKA] -to [get_clocks CLKB]
@@ -615,7 +606,5 @@ set_false_path -from [get_clocks CLKB] -to [get_clocks CLKA]
 ```tcl
 set_false_path -through [get_pins MUX1/a0] -through [get_pins MUX2/a1]
 ```
-
-![](https://upload-images.jianshu.io/upload_images/16278820-e570c6b69dcc0bde.png)
 
 凡是经过`MUX1/a0`，到`MUX2/a1`的时序路径都会被忽略，采用`-through`的好处是不需要具体指定时序路径的起点和终点，`-through`的顺序需要注意，上述命令描述的是先经过`MUX1/a0`，然后再经过`MUX2/a1`。
