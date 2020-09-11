@@ -43,7 +43,6 @@
 
 ## 1.3 [Algorithm](tech/algorithm/algorithm.md)
 
-
 ## 1.4 Linux
 
 - [Command](tech/linux/cmd/cmd.md)
@@ -52,9 +51,14 @@
 
 - [Makefile](tech/linux/make/make.md)
 
+# 1.5 [Image](tech/image/image.md)
 
 ## 1.5 [Machine Learning](tech/machine-learning/machine-learning.md)
 
 ## 1.6 [EPICS](tech/epics/epics.md)
 
-# 2. Read
+# 2. Life
+
+## 2.1 Garden
+
+[Garden](life/garden/garden.md)

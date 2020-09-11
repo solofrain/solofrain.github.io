@@ -13,7 +13,7 @@
 
 - [PCIe: Xilinx’ pipe_clock module and its timing constraints](http://billauer.co.il/blog/2017/02/pipe-clock-pcie-xilinx/){:target="_blank"}
 
-- [八小时超长视频教你掌握FPGA时序约束](fpga-timing-constraint-video.md)
+- [八小时超长视频教你掌握FPGA时序约束](fpga-timing-constraint-video.md) 
 
 - [FPGA时序约束理论](fpga-timing-constraint-theory.md)
 
@@ -21,4 +21,6 @@
 
 - [DCM/DLL/PLL/MMCM区别](dcm-dll-pll-mmcm.md)
 
-- [Constraining Asynchronous Clocks](https://forums.xilinx.com/t5/Adaptable-Advantage-Blog/Constraining-Asynchronous-Clocks/ba-p/657880#comments){:target="_blank"}
+- [Constraining Asynchronous Clocks](https://forums.xilinx.com/t5/Adaptable-Advantage-Blog/Constraining-Asynchronous-Clocks/ba-p/657880){:target="_blank"}
+
+- [High Speed Design Closure Techniques](tech/fpga/xilinx/vivado/timing/xilinx-vivado-expert-series-timing-closure-webinar.pdf){:target="_blank"}

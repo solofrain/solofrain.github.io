@@ -10,7 +10,9 @@ FPGA PROJECT
 
 # 2. Image/Video
 
-## 2.1 [PicoZed嵌入式视觉开发套件](https://www.avnet.com/shop/us/products/avnet-engineering-services/aes-pz-embv-kit-g-3074457345630122202/){:target="_blank"}
+## 2.1 PicoZed嵌入式视觉开发套件
+
+链接：[Avnet](https://www.avnet.com/shop/us/products/avnet-engineering-services/aes-pz-embv-kit-g-3074457345630122202/){:target="_blank"}
 
 包括：
 

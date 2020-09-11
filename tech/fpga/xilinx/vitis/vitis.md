@@ -9,6 +9,8 @@ Vitis
 
 ## 2. Tutorial
 
+- [How to Install Vitis: Step-by-Step](https://www.youtube.com/watch?v=9Jx-Guvl52U){:target="_blank"}
+
 - [2020.1 Vitis™ Application Acceleration Development Flow Tutorials](https://github.com/Xilinx/Vitis-Tutorials){:target="_blank"}
 
     **Intermediate**
@@ -28,9 +30,11 @@ Vitis
 -|:-:|-
 [Controlling Vivado Implementation](https://github.com/Xilinx/Vitis-Tutorials/blob/2020.1/docs/controlling-vivado-impl/README.md){:target="_blank"} | RTL | This tutorial demonstrates how you can control the Vivado® tools flow when implementing your project.
 
-
+- [Vitis Software Platform: Embedded Vision Reference Platforms User Guide 2019.2 (UG1265)](https://github.com/Xilinx/Embedded-Reference-Platforms-User-Guide/){:target="_blank"}
 
 - [Xilinx Vitis-In-Depth-Tutorial ](https://github.com/Xilinx/Vitis-In-Depth-Tutorial){:target="_blank"}
+
+- [Xilinx Vitis AI](https://github.com/xilinx/vitis-ai){:target="_blank"}
 
 - Building Accelerated Applications with Vitis
     - [Video](https://app.livestorm.co/adiuvo-engineering/building-accelerated-applications-with-vitis/live?s=c5d2a454-9f0c-429d-963c-3cc5a8d999a6#/chat){:target="_blank"}
@@ -40,3 +44,5 @@ Vitis
         - [Slides](tech/fpga/xilinx/vitis/Building-Accelerated-Applications-with-Vitis.pdf){:target="_blank"}
 
         - [Lab](tech/fpga/xilinx/vitis/Building-Accelerated-Applications-with-Vitis-Course-Workbook.pdf){:target="_blank"}
+
+- [Whole Application Acceleration - Design An AI-enabled System](https://event.on24.com/eventRegistration/console/EventConsoleApollo.jsp?&eventid=2240047&sessionid=1&username=&partnerref=webinarpage&format=fhaudio&mobile=&flashsupportedmobiledevice=&helpcenter=&key=02B79CB637AB2564F1EE8FA9F92323A5&newConsole=true&nxChe=true&text_language_id=en&playerwidth=748&playerheight=526&eventuserid=284759983&contenttype=A&mediametricsessionid=298770065&mediametricid=3167923&usercd=284759983&mode=launch){:target="_blank"}
