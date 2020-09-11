@@ -8,6 +8,10 @@
 - **HDL**
     - [HDL](tech/fpga/hdl/vhdl-type-conversion.md)
 
+- **Tcl**
+
+    - [Tcl](tech/fpga/tcl/tcl.md)
+
 - **Xilinx**
 
     - [PetaLinux](tech/fpga/xilinx/petalinux/petalinux.md)
@@ -51,14 +55,14 @@
 
 - [Makefile](tech/linux/make/make.md)
 
-# 1.5 [Image](tech/image/image.md)
+## 1.5 [Image](tech/image/image.md)
 
-## 1.5 [Machine Learning](tech/machine-learning/machine-learning.md)
+## 1.6 [Machine Learning](tech/machine-learning/machine-learning.md)
 
-## 1.6 [EPICS](tech/epics/epics.md)
+## 1.7 [EPICS](tech/epics/epics.md)
 
 # 2. Life
 
 ## 2.1 Garden
 
-[Garden](life/garden/garden.md)
+- [Garden](life/garden/garden.md)
