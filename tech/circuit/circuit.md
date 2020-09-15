@@ -19,6 +19,16 @@ Circuit
     - For Zynq UltraScale+ MPSoC there are three types of banks: HP, HD and MIO. The HD and MIO banks support 3.3V ([DS925](http://www.xilinx.com/support/documentation/data_sheets/ds925-zynq-ultrascale-plus.pdf){:target="_blank"}). HDIO is intended for low speed control and status signals. 
     - Virtex Ultrascale+ doesn't support HD banks. 
 
+- Level shifting ICs
+
+    - [PI4GTL2014 4-bit LVTTL to GTL transceiver](https://www.diodes.com/part/view/PI4GTL2014)
+
+     - [PI4GTL200 2-Channel GTL level shifter & transceiver](https://www.diodes.com/part/view/PI4GTL2002)
+
+     - [LSF0108-Q1 Automotive 8-Channel Bidirectional Multi-Voltage-Level Translator](https://www.ti.com/product/LSF0108-Q1) / [14-24-LOGIC-EVM](https://www.digikey.com/products/en?mpart=14-24-LOGIC-EVM&v=296)
+
+
+
 # 3. Project
 
 
