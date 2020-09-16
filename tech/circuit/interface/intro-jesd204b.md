@@ -27,6 +27,19 @@ The application layer allows for special user configurations and for sample data
 
 Take a closer examination of the transport layer of the JESD204B specification. The transport layer takes the ADC samples and adds information (padding) to generate nibble groups (usually on 4-bit boundaries). This information is in the form of tail bits or control bits, which can provide additional information about the transmitted data. The transport layer arranges these nibble groups into frames. It is important to note that the transport layer delivers the samples to the data link layer as parallel data. The width of the parallel data bus is determined by the framer architectures, in which a single byte is eight bits, a dual byte is 16 bits, and so on. The serializer has not yet been reached in the data flow at this point.
 
+##### Table 1. Transportation layer parameters
+
+Parameter | Meaning
+:-:|-
+L | Number of lanes in a link
+M | Number of converters per device
+F | Number of octets per frame
+S | Number of samples per converter per frame clock cycle
+K | # of frames per multiframe
+CF | Number of control words per frame clock cycle per link
+N | Converter Resolution
+N' | Total number of bits per sample
+
 A single ADC can be mapped to a single lane link, or can be mapped to a multilane link. This configurability is especially handy for GSPS ADCs used in wideband RF applications where the sample rate dictates that multiple lanes be used in order to meet limits on lane rates. Multiple converters can also be mapped onto multiple lanes for M number of ADCs in the same device. The ADCs can be mapped to a single lane link or into a multilane link consisting of L number of lanes. In some cases an ADC may need multiple lanes. The lane rate maximum of a given ADC determines this. For example, the 12-bit, 2.5 GSPS AD9625 has a lane rate maximum of 6.5 Gbps. This means that with N' equal to 16, a total of eight lanes are required. Sometimes the lane rate may be limited by the FPGA in the system. For customers using GSPS ADCs in their RF applications, one design parameter may be cost. In order to drive the cost down, an FPGA with lower lane rate capability may be used. For example, the 14-bit, 1.0 GSPS dual-channel AD9680 has a maximum lane rate of 12.5 Gbps. The AD9680 has four output lanes and can be configured to use decimation to lower the sample rate, and thus the lane rate. This is serving two purposes: a lane rate reduction and a bandwidth selection for a specific RF application.
 
 Now, moving back to the JESD204B parameters, the N' parameter gives the JESD204B word size. The converter sample resolution is broken down into 4-bit nibbles. A 14-bit converter, as well as a 16-bit converter, has four nibbles, while a 12-bit converter has three nibbles. If N' is set to 12 for the AD9625, the number of required lanes can be reduced by two such that six lanes are required to maintain a lane rate of less than 6.5 Gbps. The conversion samples (S) are recommended to be mapped into JESD204B words on 4-bit nibble boundaries. **Figure 2** shows the mapping of ADC samples into the serial lanes. It is parameterized such that it covers the many potential cases that can be realized with JESD204B.
@@ -76,9 +89,9 @@ Upon reaching the user data phase, character replacement in the data link layer 
 
 ##### Figure 4. Data Link Layer—ILAS, CGS, Data Sequencing
 
-In receiver character replacement, the receiver must do the exact opposite of what is done in the transmitter. If an **/F/** character is detected, it is replaced with the final character of the previous frame. When an **/A/** is detected, it is replaced with the final character of the previous multiframe. When scrambling is enabled, the **/F/** characters are replaced by **0xFC** and the **/A/** characters are replaced by **0x7C**. If the receiver detects two consecutive errors, it can realign the lanes. However, data will be corrupted while it performs this operation. A brief list of all the JESD204 control characters is provide in Table 1. For more information on the control characters, see Reference 3.
+In receiver character replacement, the receiver must do the exact opposite of what is done in the transmitter. If an **/F/** character is detected, it is replaced with the final character of the previous frame. When an **/A/** is detected, it is replaced with the final character of the previous multiframe. When scrambling is enabled, the **/F/** characters are replaced by **0xFC** and the **/A/** characters are replaced by **0x7C**. If the receiver detects two consecutive errors, it can realign the lanes. However, data will be corrupted while it performs this operation. A brief list of all the JESD204 control characters is provide in **Table 2**. For more information on the control characters, see Reference 3.
 
-##### Table 1. JESD204B Control Characters
+##### Table 2. JESD204B Control Characters
 
 Control Character  | Control Symbol | 8-Bit Value | 10-Bit Value, RD = -1 |	10-Bit Value, RD = +1 |	Description
 :-:|:-:|:-:|:-:|:-:|-
@@ -97,9 +110,9 @@ Data can be optionally scrambled, but it is important to note that the scramblin
 
 ##  5. Physical Layer
 
-The physical layer is where the data is serialized, and the 8B/10B encoded data is transmitted and received at line rate speeds. The physical layer includes serial/deserializer (SERDES) blocks, drivers, receivers, and **CDR**. These blocks are often designed using custom cells since the data transfer rates are very high. The JESD204 and JESD204A both support speeds up to 3.125 Gbps. The JESD204B specification supports three possible speed grades. Speed Grade 1 supports up to 3.125 Gbps and is based on the OIF-SxI5-0.10 specification. Speed Grade 2 supports up to 6.375 Gbps and is based on the CEI-6G-SR specification. The third speed grade supports up to 12.5 Gbps and is based on the CEI-11G-SR specification. Table 2 provides an overview of some of the specifications for the physical layer for each of the three speed grades.
+The physical layer is where the data is serialized, and the 8B/10B encoded data is transmitted and received at line rate speeds. The physical layer includes serial/deserializer (SERDES) blocks, drivers, receivers, and **CDR**. These blocks are often designed using custom cells since the data transfer rates are very high. The JESD204 and JESD204A both support speeds up to 3.125 Gbps. The JESD204B specification supports three possible speed grades. Speed Grade 1 supports up to 3.125 Gbps and is based on the OIF-SxI5-0.10 specification. Speed Grade 2 supports up to 6.375 Gbps and is based on the CEI-6G-SR specification. The third speed grade supports up to 12.5 Gbps and is based on the CEI-11G-SR specification. **Table 3** provides an overview of some of the specifications for the physical layer for each of the three speed grades.
 
-##### Table 2. JESD204B Physical Layer Specifications
+##### Table 3. JESD204B Physical Layer Specifications
 
  Parameter | OIF-Sx15-01.0 | CEI-6G-SR | CEI-11G-SR
  :-:|:-:|:-:|:-:
@@ -108,11 +121,11 @@ Output Differential Voltage (mVppd) | 500 (min)<br>1000 (max) |	400 (min)<br>750
 Output Rise/Fall Time (ps) | >50 | >30 | >24
 Output Total Jitter (pp UI) | 0.35 | 0.30 | 0.30
 
-Table 2 gives the line rate, differential voltage, rise/fall time, and total jitter for the signals in the physical layer of the JESD204B standard according to each speed grade. The higher speed grades have reduced signal amplitudes to make it easier to maintain a high slew rate,and thus maintain an open data eye for proper signal transmission. These high speed signals, with fast rising and falling edges, place tight constraints on board level design. For many individuals designing wideband RF systems, this should not be something new.  However, the one key difference with high speed digital is the wide bandwidth. Typical RF systems have signal bandwidths on the order of 10% or less of the operating RF frequency. With these high speed serial lane rates, the bandwidth to consider for system design is typically 3× to 5× the lane rate. For a lane rate of 5 Gbps, the bandwidth of the signal would be 7.5 GHz to 12.5 GHz. With this amount of bandwidth, it is important to maintain proper signal integrity and to understand how to measure for signal integrity.
+**Table 3** gives the line rate, differential voltage, rise/fall time, and total jitter for the signals in the physical layer of the JESD204B standard according to each speed grade. The higher speed grades have reduced signal amplitudes to make it easier to maintain a high slew rate,and thus maintain an open data eye for proper signal transmission. These high speed signals, with fast rising and falling edges, place tight constraints on board level design. For many individuals designing wideband RF systems, this should not be something new.  However, the one key difference with high speed digital is the wide bandwidth. Typical RF systems have signal bandwidths on the order of 10% or less of the operating RF frequency. With these high speed serial lane rates, the bandwidth to consider for system design is typically 3× to 5× the lane rate. For a lane rate of 5 Gbps, the bandwidth of the signal would be 7.5 GHz to 12.5 GHz. With this amount of bandwidth, it is important to maintain proper signal integrity and to understand how to measure for signal integrity.
 
-In serial differential interfaces, the eye diagram is a common measurement of the integrity of the signal. **Figure 6** shows the transmitter eye diagram mask for JESD204 operating at speeds up to 3.125 Gbps. Table 3 gives the details on timing, voltage levels, impedances, and return loss. The signal must not encroach onto the beige area of the figure, but must stay in the white at all times. The table defines the conditions for which the transmitter must meet the eye mask. There are similar eye diagram masks for the other two speed grades within the JESD204B specification as well. These are detailed in the CEI-6G-SR and CEI-11G-SR physical layer specifications. For more information on the eye diagram masks, see Reference 2, which describes the physical layer measurements.
+In serial differential interfaces, the eye diagram is a common measurement of the integrity of the signal. **Figure 6** shows the transmitter eye diagram mask for JESD204 operating at speeds up to 3.125 Gbps. **Table 4** gives the details on timing, voltage levels, impedances, and return loss. The signal must not encroach onto the beige area of the figure, but must stay in the white at all times. The table defines the conditions for which the transmitter must meet the eye mask. There are similar eye diagram masks for the other two speed grades within the JESD204B specification as well. These are detailed in the CEI-6G-SR and CEI-11G-SR physical layer specifications. For more information on the eye diagram masks, see Reference 2, which describes the physical layer measurements.
 
-##### Table 3. Eye Diagram Measurements 
+##### Table 4. Eye Diagram Measurements 
 
 Parameter |	Value |	Unit
 :-:|:-:|:-:|

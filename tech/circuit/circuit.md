@@ -11,14 +11,24 @@ Circuit
 
 - [What is the best way to convert 1.8 V to 5 V?](https://electronics.stackexchange.com/questions/127619/what-is-the-best-way-to-convert-1-8-v-to-5-v){:target="_blank"}
 
+### 1.1.2 8B/10B
 
-### 1.1.2 JESD204B
+- [Introduction to 8B/10B](interface/intro-8b-10b.md)
 
-- [JESD204B Overview](https://www.ti.com.cn/cn/lit/ml/slap161/slap161.pdf?ts=1600271439525){:target="_blank"}
+- [8b/10b Encoder/Decoder](https://www.latticesemi.com/-/media/LatticeSemi/Documents/ReferenceDesigns/1D/8b10bEncoderDecoder-Documentation.ashx?document_id=5653){:target="_blank"}
+
+
+### 1.1.3 JESD204B
+
+- [JESD204B Overview](https://www.ti.com.cn/cn/lit/ml/slap161/slap161.pdf){:target="_blank"}
 
 - [Introduction to JESD204B](interface/intro-jesd204b.md)
 
 - [JESD204B: Understanding the protocol](https://e2e.ti.com/blogs_/b/analogwire/archive/2014/07/30/jesd204b-understanding-the-protocol){:target="_blank"}
+
+- [JESD204B: Determining your link configuration](https://e2e.ti.com/blogs_/b/analogwire/archive/2014/09/24/jesd204b-determining-your-link-configuration){:target="_blank"}
+
+- [JESD204B Transport and Data Link Layers](https://www.ti.com/lit/ml/slap160/slap160.pdf){:target="_blank"}
 
 - An Intro to JESD204B Subclasses and Deterministic Latency
     - [Park 1](https://www.electronicdesign.com/technologies/analog/article/21139021/an-intro-to-jesd204b-subclasses-and-deterministic-latency-part-1?utm_source=EG+ED+Today&utm_medium=email&utm_campaign=CPS200828012&o_eid=0048A7615490B5U&rdx.ident%5Bpull%5D=omeda%7C0048A7615490B5U&oly_enc_id=0048A7615490B5U){:target="_blank"}
@@ -30,6 +40,8 @@ Circuit
     - [What is deterministic latency? Why do I need it? How do I achieve it?](https://e2e.ti.com/blogs_/b/analogwire/archive/2014/12/22/jesd204b-what-is-deterministic-latency-why-do-i-need-it-how-do-i-achieve-it){:target="_blank"}
     - [How to measure and verify your deterministic latency](https://e2e.ti.com/blogs_/b/analogwire/archive/2015/02/27/jesd204b-how-to-measure-and-verify-your-deterministic-latency){:target="_blank"}
     - [How to calculate your deterministic latency](https://e2e.ti.com/blogs_/b/analogwire/archive/2015/01/16/jesd204b-how-to-calculate-your-deterministic-latency){:target="_blank"}
+
+- [JESD204B: How to bring up your link](https://e2e.ti.com/blogs_/b/analogwire/archive/2014/08/27/jesd204b-how-to-bring-up-your-link){:target="_blank"}
 
 # 2. Function block
 
@@ -56,6 +68,13 @@ Circuit
 
      - [LSF0108-Q1 Automotive 8-Channel Bidirectional Multi-Voltage-Level Translator](https://www.ti.com/product/LSF0108-Q1) / [14-24-LOGIC-EVM](https://www.digikey.com/products/en?mpart=14-24-LOGIC-EVM&v=296){:target="_blank"}
 
+### 2.1.2 8B/10B
+
+- 不使用查找表的高速统一8B/10B编码器
+
+    - [Online](http://www.ssc.net.cn/files/pdf/56_4.pdf){:target="_blank"}
+
+    - [Local](high-speed-8b-10b-encoder-wo-lut.pdf){:target="_blank"}
 
 # 3. Project
 
