@@ -79,6 +79,7 @@ Upon reaching the user data phase, character replacement in the data link layer 
 In receiver character replacement, the receiver must do the exact opposite of what is done in the transmitter. If an **/F/** character is detected, it is replaced with the final character of the previous frame. When an **/A/** is detected, it is replaced with the final character of the previous multiframe. When scrambling is enabled, the **/F/** characters are replaced by **0xFC** and the **/A/** characters are replaced by **0x7C**. If the receiver detects two consecutive errors, it can realign the lanes. However, data will be corrupted while it performs this operation. A brief list of all the JESD204 control characters is provide in Table 1. For more information on the control characters, see Reference 3.
 
 ##### Table 1. JESD204B Control Characters
+
 Control Character  | Control Symbol | 8-Bit Value | 10-Bit Value, RD = -1 |	10-Bit Value, RD = +1 |	Description
 :-:|:-:|:-:|:-:|:-:|-
 /R/ |	K28.0 |	000 11100 |	001111 0100 |	110000 1011 |	Start of multiframe
@@ -99,6 +100,7 @@ Data can be optionally scrambled, but it is important to note that the scramblin
 The physical layer is where the data is serialized, and the 8B/10B encoded data is transmitted and received at line rate speeds. The physical layer includes serial/deserializer (SERDES) blocks, drivers, receivers, and **CDR**. These blocks are often designed using custom cells since the data transfer rates are very high. The JESD204 and JESD204A both support speeds up to 3.125 Gbps. The JESD204B specification supports three possible speed grades. Speed Grade 1 supports up to 3.125 Gbps and is based on the OIF-SxI5-0.10 specification. Speed Grade 2 supports up to 6.375 Gbps and is based on the CEI-6G-SR specification. The third speed grade supports up to 12.5 Gbps and is based on the CEI-11G-SR specification. Table 2 provides an overview of some of the specifications for the physical layer for each of the three speed grades.
 
 ##### Table 2. JESD204B Physical Layer Specifications
+
  Parameter | OIF-Sx15-01.0 | CEI-6G-SR | CEI-11G-SR
  :-:|:-:|:-:|:-:
 Line Rate (Gbps) | ≤3.125 |	≤6.375 | ≤12.5
