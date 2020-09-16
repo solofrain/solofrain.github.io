@@ -14,12 +14,22 @@ Circuit
 
 ### 1.1.2 JESD204B
 
+- [JESD204B Overview](https://www.ti.com.cn/cn/lit/ml/slap161/slap161.pdf?ts=1600271439525){:target="_blank"}
+
+- [Introduction to JESD204B](intro-jesd204b.md)
+
 - An Intro to JESD204B Subclasses and Deterministic Latency
     - [Park 1](https://www.electronicdesign.com/technologies/analog/article/21139021/an-intro-to-jesd204b-subclasses-and-deterministic-latency-part-1?utm_source=EG+ED+Today&utm_medium=email&utm_campaign=CPS200828012&o_eid=0048A7615490B5U&rdx.ident%5Bpull%5D=omeda%7C0048A7615490B5U&oly_enc_id=0048A7615490B5U){:target="_blank"}
 
     - [Part 2](https://www.electronicdesign.com/technologies/analog/article/21140723/an-intro-to-jesd204b-subclasses-and-system-considerations-part-2?utm_source=EG+ED+Today&utm_medium=email&utm_campaign=CPS200911056&o_eid=0048A7615490B5U&rdx.ident%5Bpull%5D=omeda%7C0048A7615490B5U&oly_enc_id=0048A7615490B5U){:target="_blank"}
 
 - [JESD204B: Understanding the protocol](https://e2e.ti.com/blogs_/b/analogwire/archive/2014/07/30/jesd204b-understanding-the-protocol){:target="_blank"}
+
+- [JESD204B: deterministic latency]
+
+    - [What is deterministic latency? Why do I need it? How do I achieve it?](https://e2e.ti.com/blogs_/b/analogwire/archive/2014/12/22/jesd204b-what-is-deterministic-latency-why-do-i-need-it-how-do-i-achieve-it){:target="_blank"}
+    - [How to measure and verify your deterministic latency](https://e2e.ti.com/blogs_/b/analogwire/archive/2015/02/27/jesd204b-how-to-measure-and-verify-your-deterministic-latency){:target="_blank"}
+    - [How to calculate your deterministic latency](https://e2e.ti.com/blogs_/b/analogwire/archive/2015/01/16/jesd204b-how-to-calculate-your-deterministic-latency){:target="_blank"}
 
 # 2. Function block
 
@@ -35,7 +45,7 @@ Circuit
 - [UltraScale deivces and 3.3V I/O](https://forums.xilinx.com/t5/Versal-and-UltraScale/New-FPGAs-Supporting-3-3V-IO/td-p/911112){:target="_blank"}
 
     - For Zynq UltraScale+ MPSoC there are three types of banks: HP, HD and MIO. The HD and MIO banks support 3.3V ([DS925](http://www.xilinx.com/support/documentation/data_sheets/ds925-zynq-ultrascale-plus.pdf){:target="_blank"}). HDIO is intended for low speed control and status signals. 
-    
+
     - Virtex Ultrascale+ doesn't support HD banks. 
 
 - Level shifting ICs
