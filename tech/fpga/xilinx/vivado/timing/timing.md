@@ -3,6 +3,10 @@
 
 - [Vivado时序分析方法——report_design_analysis（一）](vivado-timing-analysis-report_design_analysis.md){:target="_blank"}
 
+- [FPGA时序约束之Tcl命令的对象及属性](fpga-timing-tcl-object.md)
+
+- [FPGA时序约束中常用公式推导](timing-formula.md)
+
 - [时序报告要看哪些指标](metrics-in-timing-report.md){:target="_blank"}
 
 - [深度解析UG1292](ug1292-deep-analysis.md){:target="_blank"}
