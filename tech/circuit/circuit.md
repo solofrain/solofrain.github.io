@@ -18,12 +18,12 @@ Circuit
 
 - [Introduction to JESD204B](intro-jesd204b.md)
 
+- [JESD204B: Understanding the protocol](https://e2e.ti.com/blogs_/b/analogwire/archive/2014/07/30/jesd204b-understanding-the-protocol){:target="_blank"}
+
 - An Intro to JESD204B Subclasses and Deterministic Latency
     - [Park 1](https://www.electronicdesign.com/technologies/analog/article/21139021/an-intro-to-jesd204b-subclasses-and-deterministic-latency-part-1?utm_source=EG+ED+Today&utm_medium=email&utm_campaign=CPS200828012&o_eid=0048A7615490B5U&rdx.ident%5Bpull%5D=omeda%7C0048A7615490B5U&oly_enc_id=0048A7615490B5U){:target="_blank"}
 
     - [Part 2](https://www.electronicdesign.com/technologies/analog/article/21140723/an-intro-to-jesd204b-subclasses-and-system-considerations-part-2?utm_source=EG+ED+Today&utm_medium=email&utm_campaign=CPS200911056&o_eid=0048A7615490B5U&rdx.ident%5Bpull%5D=omeda%7C0048A7615490B5U&oly_enc_id=0048A7615490B5U){:target="_blank"}
-
-- [JESD204B: Understanding the protocol](https://e2e.ti.com/blogs_/b/analogwire/archive/2014/07/30/jesd204b-understanding-the-protocol){:target="_blank"}
 
 - [JESD204B: deterministic latency]
 
