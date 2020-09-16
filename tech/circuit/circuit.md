@@ -16,7 +16,7 @@ Circuit
 
 - [JESD204B Overview](https://www.ti.com.cn/cn/lit/ml/slap161/slap161.pdf?ts=1600271439525){:target="_blank"}
 
-- [Introduction to JESD204B](intro-jesd204b.md)
+- [Introduction to JESD204B](interface/intro-jesd204b.md)
 
 - [JESD204B: Understanding the protocol](https://e2e.ti.com/blogs_/b/analogwire/archive/2014/07/30/jesd204b-understanding-the-protocol){:target="_blank"}
 
@@ -25,7 +25,7 @@ Circuit
 
     - [Part 2](https://www.electronicdesign.com/technologies/analog/article/21140723/an-intro-to-jesd204b-subclasses-and-system-considerations-part-2?utm_source=EG+ED+Today&utm_medium=email&utm_campaign=CPS200911056&o_eid=0048A7615490B5U&rdx.ident%5Bpull%5D=omeda%7C0048A7615490B5U&oly_enc_id=0048A7615490B5U){:target="_blank"}
 
-- [JESD204B: deterministic latency]
+- JESD204B: deterministic latency
 
     - [What is deterministic latency? Why do I need it? How do I achieve it?](https://e2e.ti.com/blogs_/b/analogwire/archive/2014/12/22/jesd204b-what-is-deterministic-latency-why-do-i-need-it-how-do-i-achieve-it){:target="_blank"}
     - [How to measure and verify your deterministic latency](https://e2e.ti.com/blogs_/b/analogwire/archive/2015/02/27/jesd204b-how-to-measure-and-verify-your-deterministic-latency){:target="_blank"}
