@@ -1,4 +1,4 @@
-# 8B/10B
+# Introduction to 8B/10B Encoding
 
 - **Run length**: the maximum numbers of contiguous 0s or 1s in the serial data stream
 
