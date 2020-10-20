@@ -98,3 +98,4 @@ Analog Devices FMCDAQ3 EBZ Rapid Prototyping FMC Module
         
     [https://ez.analog.com/fpga](https://ez.analog.com/fpga){:target="_blank"}
         
+- [Migrate ADI ZCU102 Project to ZCU106](migrate-adi-zcu102-prj-to-zcu106.md)
