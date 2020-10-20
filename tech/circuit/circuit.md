@@ -43,6 +43,67 @@ Circuit
 
 - [JESD204B: How to bring up your link](https://e2e.ti.com/blogs_/b/analogwire/archive/2014/08/27/jesd204b-how-to-bring-up-your-link){:target="_blank"}
 
+## 1.2 Audio
+
+### 1.2.1 Autio Filters
+
+[Audio Filters – Understanding Sound Waves – 1/8](https://www.engineersgarage.com/tutorials/audio-filters-understanding-sound-waves-1-8/)
+
+[Audio Filters – Understanding Acoustic Waves – 2/8](https://www.engineersgarage.com/tutorials/audio-filters-understanding-acoustic-waves-2-8/)
+
+[Audio Filters – Working and Classification of Microphones – 3/8](https://www.engineersgarage.com/tutorials/audio-filters-working-and-classification-of-microphones-3-8/)
+
+[Audio Filters – Working and Classification of Speakers – 4/8](https://www.engineersgarage.com/tutorials/audio-filters-working-and-classification-of-speakers-4-8/)
+
+[Audio Filters – Basics of Audio Filters – 5/8](https://www.engineersgarage.com/tutorials/audio-filters-basics-of-audio-filters-5-8/)
+
+[Audio Filters – Designing a 2-Way Audio Crossover – 6/8](https://www.engineersgarage.com/contributions/audio-filters-designing-a-2-way-audio-crossover-6-8/)
+
+[Audio Filters – Designing an Audio Equalizer-7/8](https://www.engineersgarage.com/contributions/audio-filters-designing-an-audio-equalizer-7-8/)
+
+[Audio Filters – Designing an Audio Mixer – 8/8](https://www.engineersgarage.com/contributions/audio-filters-designing-an-audio-mixer-8-8/)
+
+## 1.2.2 Basics of Audio Amplifier
+
+[Basics of Audio Amplifier – 1/9](https://www.engineersgarage.com/tutorials/basics-of-audio-amplifier-1-9/)
+
+## 1.3 Power
+
+- [Automatic Power Supply Switching For Battery Operated Devices](https://www.engineersgarage.com/contributions/automatic-power-supply-switching-for-battery-operated-devices-part-8-9/)
+
+- [Adjustable Power Supply Using LM317](https://www.engineersgarage.com/contributions/adjustable-power-supply-using-lm317-part-7-13/)
+
+- [Reverse Battery Protection Circuit](https://www.engineersgarage.com/contributions/reverse-battery-protection-circuit-part-1-9/)
+
+- [Designing a Power Bank](https://www.engineersgarage.com/contributions/designing-a-power-bank-part-2-9/)
+
+- [Battery Over Discharging Indicator and Protection Circuit](https://www.engineersgarage.com/contributions/battery-over-discharging-indicator-and-protection-circuit-part-3-9/)
+
+- [Battery Overcharging Protection Circuit with Automatic Cut Off](https://www.engineersgarage.com/contributions/battery-overcharging-protection-circuit-with-automatic-cut-off-part-4-9/)
+
+- [DC to DC Boost Converter Circuit](https://www.engineersgarage.com/contributions/dc-to-dc-boost-converter-circuit-part-5-9/)
+
+- [Make a Battery Level Indicator using LM3914 IC](https://www.engineersgarage.com/contributions/make-a-battery-level-indicator-using-lm3914-ic-part-6-9/)
+
+- [Make a Battery Level Indicator using LM339 IC](https://www.engineersgarage.com/contributions/make-a-battery-level-indicator-using-lm339-ic-part-7-9/)
+
+- [Adjustable 0 to 30V 2A DC Power Supply Circuit](https://www.engineersgarage.com/contributions/adjustable-0-to-30v-2a-dc-power-supply-circuit-part-1-13/)
+
+- [Adjustable +/- 1.25V to +/-22V 1A Power Supply Circuit](https://www.engineersgarage.com/contributions/adjustable-1-25v-to-22v-1a-power-supply-circuit-part-2-13/)
+
+- [Triple Bench Power Supply](https://www.engineersgarage.com/contributions/triple-bench-power-supply-part-8-13/)
+
+- [Transformer less AC to DC Power Supply](https://www.engineersgarage.com/contributions/transformer-less-ac-to-dc-power-supply-part-10-13/)
+
+- [Voltage Doubler Using 555 IC](https://www.engineersgarage.com/contributions/voltage-doubler-using-555-ic-part-11-13/)
+
+
+- [Adjustable Constant Current Source](https://www.engineersgarage.com/contributions/adjustable-constant-current-source-part-13-13/)
+
+## Connectors
+
+[The Ultimate Guide to Terminal Block Selection](https://www.cuidevices.com/blog/ultimate-guide-to-terminal-block-selection)
+
 # 2. Function block
 
 ## 2.1 Interface
